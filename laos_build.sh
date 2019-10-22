@@ -5,7 +5,12 @@ rev=$2
 
 cd "${HOME}/android/laos_${rev}/.repo/repo" || exit
 git pull
-cp -vi repo "${HOME}/bin/repo"
+DIFF=$(diff repo ${HOME}/bin/repo)
+if [ "${DIFF}" != "" ]; then
+    cp -vi repo "${HOME}/bin/repo"
+else
+    echo "repo unmodified"
+fi
 cd "${HOME}/android/laos_${rev}" || exit
 echo
 while true; do
