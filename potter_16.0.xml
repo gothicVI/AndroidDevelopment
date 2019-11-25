@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <!-- potter device, kernel, vendor -->	
+  <!-- potter device, kernel, vendor -->
   <project name="gothicVI/android_device_motorola_potter" path="device/motorola/potter" remote="github" revision="lineage-16.0"/>
   <!-- <project name="boulzordev/android_device_motorola_potter" path="device/motorola/potter" remote="github" revision="lineage-16.0"/> -->
   <!-- <project name="ArrowOS-Devices/android_device_motorola_potter" path="device/motorola/potter" remote="github" revision="arrow-9.x"/> -->
