@@ -55,6 +55,14 @@ source build/envsetup.sh
 #  echo
 #  read -s
 #fi
+if [ "${dev}" == "potter" ] && [ "${rev}" == "17.0" ]; then
+  echo
+  repopick -f 256308
+  echo
+  echo "Press ENTER to continue..."
+  echo
+  read -s
+fi
 breakfast "${dev}"
 croot
 brunch "${dev}"
