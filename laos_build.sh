@@ -21,7 +21,7 @@ while true; do
     esac
 done
 echo
-echo "The current security patch level is..."
+echo "The current security patch level for laos ${rev} is..."
 grep "PLATFORM_SECURITY_PATCH := " build/core/version_defaults.mk
 echo
 while true; do
@@ -46,23 +46,65 @@ echo
 read -s
 export LC_ALL=C
 source build/envsetup.sh
-#if [ "${dev}" == "potter" ] && [ "${rev}" == "16.0" ]; then
-#  echo
-#  repopick 243744
-#  repopick 243809
-#  echo
-#  echo "Press ENTER to continue..."
-#  echo
-#  read -s
-#fi
-if [ "${dev}" == "potter" ] && [ "${rev}" == "17.0" ]; then
-  echo
-  repopick -f 256308
-  echo
-  echo "Press ENTER to continue..."
-  echo
-  read -s
+echo
+echo "Picking unmerged commits"
+echo
+if [ "${rev}" == "14.1" ]; then
+      echo
+      for com in 265190 265191 265192 265193 265194 265195 265196 265197 265198 265199 265200 265201 265202 265203 265204 265230 ; do
+            repopick ${com}
+      done
+      echo
+      echo "Press ENTER to continue..."
+      echo
+      read -s
 fi
+if [ "${rev}" == "15.1" ]; then
+      echo
+#      for com in  ; do
+#            repopick ${com}
+#      done
+#      echo
+#      echo "Press ENTER to continue..."
+#      echo
+#      read -s
+fi
+if [ "${rev}" == "16.0" ]; then
+      echo
+#      for com in  ; do
+#            repopick ${com}
+#      done
+#      echo
+      if [ "${dev}" == "potter" ]; then
+            echo "Picking commits 243744, and 243809 in order to fix encryption"
+            echo
+            repopick 243744
+            repopick 243809
+            echo
+      fi
+#      echo
+#      echo "Press ENTER to continue..."
+#      echo
+#      read -s
+fi
+if [ "${rev}" == "17.0" ]; then
+      echo
+#      for com in  ; do
+#            repopick ${com}
+#      done
+#      echo
+      if [ "${dev}" == "potter" ]; then
+            echo "Picking commit 256308 in order to fix encryption"
+            echo
+            repopick -f 256308
+            echo
+      fi
+#      echo
+#      echo "Press ENTER to continue..."
+#      echo
+#      read -s
+fi
+echo
 breakfast "${dev}"
 croot
 brunch "${dev}"
