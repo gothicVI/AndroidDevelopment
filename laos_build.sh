@@ -82,10 +82,10 @@ if [ "${rev}" == "16.0" ]; then
             repopick 243809
             echo
       fi
-#      echo
-#      echo "Press ENTER to continue..."
-#      echo
-#      read -s
+      echo
+      echo "Press ENTER to continue..."
+      echo
+      read -s
 fi
 if [ "${rev}" == "17.0" ]; then
       echo
@@ -99,10 +99,10 @@ if [ "${rev}" == "17.0" ]; then
             repopick -f 256308
             echo
       fi
-#      echo
-#      echo "Press ENTER to continue..."
-#      echo
-#      read -s
+      echo
+      echo "Press ENTER to continue..."
+      echo
+      read -s
 fi
 echo
 breakfast "${dev}"
