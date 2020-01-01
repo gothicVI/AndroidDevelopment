@@ -89,10 +89,10 @@ if [ "${rev}" == "16.0" ]; then
 fi
 if [ "${rev}" == "17.0" ]; then
       echo
-#      for com in  ; do
-#            repopick ${com}
-#      done
-#      echo
+      for com in 262959 ; do
+            repopick ${com}
+      done
+      echo
       if [ "${dev}" == "potter" ]; then
             echo "Picking commit 256308 in order to fix encryption"
             echo
