@@ -122,3 +122,11 @@ rm -fv lineage_${dev}-ota-*.zip
 rm -fv lineage-${rev}-*-UNOFFICIAL-${dev}.zip.md5sum
 mv -v lineage-${rev}-*-UNOFFICIAL-${dev}.zip ~/Schreibtisch/
 pkill java
+echo
+while true; do
+    read -p "Do you wish to clean the out-directory? Type Y/y or N/n and hit return: " yn
+    case $yn in
+        [Yy]* ) echo; rm -rfv out; break;;
+        [Nn]* ) echo; break;;
+    esac
+done
