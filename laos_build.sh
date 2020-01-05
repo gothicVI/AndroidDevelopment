@@ -120,7 +120,12 @@ rm -fv system/build.prop
 rm -fv obj/ETC/system_build_prop_intermediates/build.prop
 rm -fv lineage_${dev}-ota-*.zip
 rm -fv lineage-${rev}-*-UNOFFICIAL-${dev}.zip.md5sum
-mv -v lineage-${rev}-*-UNOFFICIAL-${dev}.zip ~/Schreibtisch/
+output="$(ls lineage-${rev}-*-UNOFFICIAL-${dev}.zip)"
+outputtag=""
+if [ "${rev}" == "17.0" ]; then
+	outputtag="TEST-"
+fi
+mv -v "${output}" ~/Schreibtisch/${outputtag}${output}
 pkill java
 echo
 while true; do
