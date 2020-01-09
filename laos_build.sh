@@ -104,6 +104,16 @@ if [ "${rev}" == "17.0" ]; then
       echo
       read -s
 fi
+if [ "${rev}" == "17.1" ]; then
+      echo
+#      for com in  ; do
+#            repopick ${com}
+#      done
+#      echo
+#      echo "Press ENTER to continue..."
+#      echo
+#      read -s
+fi
 echo
 breakfast "${dev}"
 croot
@@ -120,9 +130,9 @@ rm -fv system/build.prop
 rm -fv obj/ETC/system_build_prop_intermediates/build.prop
 rm -fv lineage_${dev}-ota-*.zip
 rm -fv lineage-${rev}-*-UNOFFICIAL-${dev}.zip.md5sum
-output="lineage-${rev}-*-UNOFFICIAL-${dev}.zip"
+output="$(ls lineage-${rev}-*-UNOFFICIAL-${dev}.zip)"
 outputtag=""
-if [ "${rev}" == "17.0" ]; then
+if [ "${rev}" == "17.0" ] || [ "${rev}" == "17.1" ]; then
 	outputtag="TEST-"
 fi
 mv -v "${output}" ~/Schreibtisch/${outputtag}${output}
