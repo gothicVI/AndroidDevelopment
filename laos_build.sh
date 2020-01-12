@@ -80,7 +80,7 @@ if [ "${rev}" == "16.0" ]; then
             echo "Picking commits 243744, and 243809 in order to fix encryption"
             echo
 	    for com in 243744 243809; do
-		  repopick -f ${comm}
+		  repopick -f ${com}
 	    done
       fi
       echo
