@@ -2,6 +2,7 @@
 
 dev=$1
 rev=$2
+thr=$3
 
 cd "${HOME}/android/laos_${rev}/.repo/repo" || exit
 git pull
@@ -117,7 +118,12 @@ fi
 echo
 breakfast "${dev}"
 croot
-brunch "${dev}"
+if [ "${thr}" == "" ]; then
+	brunch "${dev}"
+else
+	breakfast "${dev}"
+	make bacon -j "${thr}"
+fi
 cd "${OUT}" || exit
 echo
 echo "Press ENTER to continue..."
