@@ -52,7 +52,7 @@ echo
 if [ "${rev}" == "14.1" ]; then
       echo
       for com in 265190 265191 265192 265193 265194 265195 265196 265197 265198 265199 265200 265201 265202 265203 265204 265230 ; do
-            repopick ${com}
+            repopick -f ${com}
       done
       echo
       echo "Press ENTER to continue..."
@@ -62,7 +62,7 @@ fi
 if [ "${rev}" == "15.1" ]; then
       echo
 #      for com in  ; do
-#            repopick ${com}
+#            repopick -f ${com}
 #      done
 #      echo
 #      echo "Press ENTER to continue..."
@@ -72,15 +72,15 @@ fi
 if [ "${rev}" == "16.0" ]; then
       echo
 #      for com in  ; do
-#            repopick ${com}
+#            repopick -f ${com}
 #      done
 #      echo
       if [ "${dev}" == "potter" ]; then
             echo "Picking commits 243744, and 243809 in order to fix encryption"
             echo
-            repopick 243744
-            repopick 243809
-            echo
+	    for com in 243744 243809; do
+		  repopick -f ${comm}
+	    done
       fi
       echo
       echo "Press ENTER to continue..."
@@ -90,7 +90,7 @@ fi
 if [ "${rev}" == "17.0" ]; then
       echo
       for com in 262959 ; do
-            repopick ${com}
+            repopick -f ${com}
       done
       echo
       if [ "${dev}" == "potter" ]; then
@@ -107,7 +107,7 @@ fi
 if [ "${rev}" == "17.1" ]; then
       echo
 #      for com in  ; do
-#            repopick ${com}
+#            repopick -f ${com}
 #      done
 #      echo
 #      echo "Press ENTER to continue..."
