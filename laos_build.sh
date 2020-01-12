@@ -4,6 +4,12 @@ dev=$1
 rev=$2
 thr=$3
 
+if [ "${thr}" == "" ]; then
+      dthr=$(nproc --all)
+else
+      dthr="${thr}"
+fi
+
 cd "${HOME}/android/laos_${rev}/.repo/repo" || exit
 git pull
 DIFF=$(diff repo ${HOME}/bin/repo)
@@ -17,7 +23,7 @@ echo
 while true; do
     read -p "Do you wish to sync the repository? Type Y/y or N/n and hit return: " yn
     case $yn in
-        [Yy]* ) echo; repo sync -j $(nproc --all) -c --no-tags --no-clone-bundle --force-sync; break;;
+        [Yy]* ) echo; repo sync -j "${dthr}" -c --no-tags --no-clone-bundle --force-sync; break;;
         [Nn]* ) echo; break;;
     esac
 done
