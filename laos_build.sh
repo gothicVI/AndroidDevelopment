@@ -58,8 +58,13 @@ echo "Picking unmerged commits"
 echo
 if [ "${rev}" == "14.1" ]; then
       echo
+      #2019-12-05
       for com in 265190 265191 265192 265193 265194 265195 265196 265197 265198 265199 265200 265201 265202 265203 265204 265230 ; do
-            repopick -f ${com}
+              repopick ${com}
+      done
+      #2020-01-05
+      for com in 266631 266632 266633 266634 266635 266636 266637 266638 266639 ; do
+              repopick ${com}
       done
       echo
       echo "Press ENTER to continue..."
@@ -68,27 +73,21 @@ if [ "${rev}" == "14.1" ]; then
 fi
 if [ "${rev}" == "15.1" ]; then
       echo
-#      for com in  ; do
-#            repopick -f ${com}
-#      done
-#      echo
-#      echo "Press ENTER to continue..."
-#      echo
-#      read -s
+      #2020-01-05
+      for com in 266643 266644 266645 266646 266647 266648 266649 266650 266651 266863 ; do
+              repopick ${com}
+      done
+      echo
+      echo "Press ENTER to continue..."
+      echo
+      read -s
 fi
 if [ "${rev}" == "16.0" ]; then
       echo
-#      for com in  ; do
-#            repopick -f ${com}
-#      done
-#      echo
-      if [ "${dev}" == "potter" ]; then
-            echo "Picking commits 243744, and 243809 in order to fix encryption"
-            echo
-	    for com in 243744 243809; do
-		  repopick -f ${com}
-	    done
-      fi
+      #2020-01-05
+      for com in 266591 266592 266593 266594 266595 266596 266597 266598 266599 266862 ; do
+              repopick ${com}
+      done
       echo
       echo "Press ENTER to continue..."
       echo
@@ -96,13 +95,11 @@ if [ "${rev}" == "16.0" ]; then
 fi
 if [ "${rev}" == "17.0" ]; then
       echo
-      for com in 262959 ; do
-            repopick -f ${com}
-      done
+      #soong: java: Specify larger heap size for metalava
+      repopick -f 262959
       echo
       if [ "${dev}" == "potter" ]; then
-            echo "Picking commit 256308 in order to fix encryption"
-            echo
+            #tinycompress: Enable extended compress format
             repopick -f 256308
             echo
       fi
@@ -113,13 +110,12 @@ if [ "${rev}" == "17.0" ]; then
 fi
 if [ "${rev}" == "17.1" ]; then
       echo
-#      for com in  ; do
-#            repopick -f ${com}
-#      done
-#      echo
-#      echo "Press ENTER to continue..."
-#      echo
-#      read -s
+      #soong: java: Specify larger heap size for metalava
+      repopick -f 266411
+      echo
+      echo "Press ENTER to continue..."
+      echo
+      read -s
 fi
 echo
 breakfast "${dev}"
