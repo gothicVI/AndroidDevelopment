@@ -118,6 +118,13 @@ if [ "${rev}" == "17.1" ]; then
       read -s
 fi
 echo
+echo "The current security patch level for laos ${rev} is..."
+grep "PLATFORM_SECURITY_PATCH := " build/core/version_defaults.mk
+echo
+echo "Press ENTER to continue..."
+echo
+read -s
+echo
 breakfast "${dev}"
 croot
 if [ "${thr}" == "" ]; then
