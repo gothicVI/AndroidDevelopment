@@ -23,7 +23,7 @@ echo
 while true; do
     read -p "Do you wish to sync the repository? Type Y/y or N/n and hit return: " yn
     case $yn in
-        [Yy]* ) echo; repo sync -j "${dthr}" -c --no-tags --no-clone-bundle --force-sync; break;;
+        [Yy]* ) echo; repo sync -j "${dthr}" -c --no-tags --no-clone-bundle --force-sync 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"; break;;
         [Nn]* ) echo; break;;
     esac
 done
