@@ -150,7 +150,7 @@ outputtag=""
 if [ "${rev}" == "17.0" ] || [ "${rev}" == "17.1" ]; then
 	outputtag="TEST-"
 fi
-mv -v "${output}" ~/Schreibtisch/${outputtag}${output}
+mv -v "${output}" "${HOME}/Schreibtisch/${outputtag}${output}"
 pkill java
 echo
 while true; do
