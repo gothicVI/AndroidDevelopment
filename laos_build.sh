@@ -60,11 +60,11 @@ if [ "${rev}" == "14.1" ]; then
       echo
       #2019-12-05
       for com in 265190 265191 265192 265193 265194 265195 265196 265197 265198 265199 265200 265201 265202 265203 265204 265230 ; do
-              repopick ${com}
+              repopick ${com} 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
       done
       #2020-01-05
       for com in 266631 266632 266633 266634 266635 266636 266637 266638 266639 ; do
-              repopick ${com}
+              repopick ${com} 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
       done
       echo
       echo "Press ENTER to continue..."
@@ -75,7 +75,7 @@ if [ "${rev}" == "15.1" ]; then
       echo
       #2020-01-05
       for com in 266643 266644 266645 266646 266647 266648 266649 266650 266651 266863 ; do
-              repopick ${com}
+              repopick ${com} 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
       done
       echo
       echo "Press ENTER to continue..."
@@ -86,7 +86,7 @@ if [ "${rev}" == "16.0" ]; then
       echo
       #2020-01-05
       for com in 266591 266592 266593 266594 266595 266596 266597 266598 266599 266862 ; do
-              repopick ${com}
+              repopick ${com} 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
       done
       echo
       echo "Press ENTER to continue..."
@@ -96,11 +96,11 @@ fi
 if [ "${rev}" == "17.0" ]; then
       echo
       #soong: java: Specify larger heap size for metalava
-      repopick -f 262959
+      repopick -f 262959 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
       echo
       if [ "${dev}" == "potter" ]; then
             #tinycompress: Enable extended compress format
-            repopick -f 256308
+            repopick -f 256308 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
             echo
       fi
       echo
@@ -111,7 +111,7 @@ fi
 if [ "${rev}" == "17.1" ]; then
       echo
       #soong: java: Specify larger heap size for metalava
-      repopick -f 266411
+      repopick -f 266411 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
       echo
       echo "Press ENTER to continue..."
       echo
