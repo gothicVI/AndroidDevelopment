@@ -14,6 +14,9 @@ cd "${HOME}/android/laos_${rev}/.repo/repo" || exit
 git pull
 DIFF=$(diff repo ${HOME}/bin/repo)
 if [ "${DIFF}" != "" ]; then
+    echo ""
+    diff repo "${HOME}/bin/repo"
+    echo ""
     cp -vi repo "${HOME}/bin/repo"
 else
     echo "repo unmodified"
