@@ -69,6 +69,10 @@ if [ "${rev}" == "14.1" ]; then
       for com in 266631 266632 266633 266634 266635 266636 266637 266638 266639 ; do
               repopick ${com} 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
       done
+      #2020-02-05
+      for com in 268256 268257 268258 268259 268260 268261 268262 268263 268264 268265 268266 268267 ; do
+              repopick ${com} 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
+      done
       echo
       echo "Press ENTER to continue..."
       echo
