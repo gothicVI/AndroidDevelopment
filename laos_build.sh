@@ -166,10 +166,12 @@ if [ "${rev}" == "17.0" ] || [ "${rev}" == "17.1" ]; then
 	outputtag="TEST-"
 fi
 mv -v "${output}" "${HOME}/Schreibtisch/${outputtag}${output}"
-cat "${HOME}/android/sync-${rev}.log" | grep -A 1 "Von" >> "${HOME}/Schreibtisch/change-${rev}.log"
-cat "${HOME}/android/sync-${rev}.log" | grep -A 1 "Applying change number" >> "${HOME}/Schreibtisch/change-${rev}.log"
-cat "${HOME}/android/sync-${rev}.log" | grep -B 1 ".." >> "${HOME}/Schreibtisch/change-${rev}.log"
-rm -fv ${HOME}/android/sync-${rev}.log
+if [ -f ${HOME}/android/sync-${rev}.log ]; then
+      cat "${HOME}/android/sync-${rev}.log" | grep -A 1 "Von" >> "${HOME}/Schreibtisch/change-${rev}.log"
+      cat "${HOME}/android/sync-${rev}.log" | grep -A 1 "Applying change number" >> "${HOME}/Schreibtisch/change-${rev}.log"
+      cat "${HOME}/android/sync-${rev}.log" | grep -B 1 ".." >> "${HOME}/Schreibtisch/change-${rev}.log"
+      rm -fv ${HOME}/android/sync-${rev}.log
+fi
 pkill java
 echo
 while true; do
