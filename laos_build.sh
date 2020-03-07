@@ -73,6 +73,10 @@ if [ "${rev}" == "14.1" ]; then
       for com in 268256 268257 268258 268259 268260 268261 268262 268263 268264 268265 268266 268267 ; do
               repopick ${com} 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
       done
+      #2020-03-05
+      for com in 270196 270217 270218 270219 270220 270221 270222 270223 ; do
+              repopick ${com} 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
+      done
       echo
       echo "Press ENTER to continue..."
       echo
@@ -88,6 +92,10 @@ if [ "${rev}" == "15.1" ]; then
       for com in 268376 268180 268181 268182 268183 268184 268185 268186 268187 268188 268189 268190 ; do
               repopick ${com} 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
       done
+      #2020-03-05
+      for com in 270122 270123 270124 270125 270126 270127 270128 270129 270130 270290 ; do
+              repopick ${com} 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
+      done
       echo
       echo "Press ENTER to continue..."
       echo
@@ -101,6 +109,10 @@ if [ "${rev}" == "16.0" ]; then
       done
       #2020-02-05
       for com in 268163 268164 268165 268166 268167 268168 268170 268171 268173 268174 268175 268176 268177 268178 268179 268375 ; do
+              repopick ${com} 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
+      done
+      #2020-03-05
+      for com in 270110 270111 270112 270113 270114 270115 270116 270117 270118 270279 ; do
               repopick ${com} 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
       done
       echo
