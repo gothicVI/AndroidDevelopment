@@ -96,21 +96,6 @@ if [ "${rev}" == "16.0" ]; then
       echo
       read -s
 fi
-if [ "${rev}" == "17.0" ]; then
-      echo
-      #soong: java: Specify larger heap size for metalava
-      repopick -f 262959 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
-      echo
-      if [ "${dev}" == "potter" ]; then
-            #tinycompress: Enable extended compress format
-            repopick -f 256308 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
-            echo
-      fi
-      echo
-      echo "Press ENTER to continue..."
-      echo
-      read -s
-fi
 if [ "${rev}" == "17.1" ]; then
       echo
       #soong: java: Specify larger heap size for metalava
@@ -150,7 +135,7 @@ rm -fv lineage_${dev}-ota-*.zip
 rm -fv lineage-${rev}-*-UNOFFICIAL-${dev}.zip.md5sum
 output="$(ls lineage-${rev}-*-UNOFFICIAL-${dev}.zip)"
 outputtag=""
-if [ "${rev}" == "17.0" ] || [ "${rev}" == "17.1" ]; then
+if [ "${rev}" == "17.1" ]; then
 	outputtag="TEST-"
 fi
 mv -v "${output}" "${HOME}/Schreibtisch/${outputtag}${output}"
