@@ -61,14 +61,6 @@ echo "Picking unmerged commits"
 echo
 if [ "${rev}" == "14.1" ]; then
       echo
-      #2019-12-05
-      for com in 265190 265191 265192 265193 265194 265195 265196 265197 265198 265199 265200 265201 265202 265203 265204 265230 ; do
-              repopick ${com} 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
-      done
-      #2020-01-05
-      for com in 266631 266632 266633 266634 266635 266636 266637 266638 266639 ; do
-              repopick ${com} 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
-      done
       #2020-02-05
       for com in 268256 268257 268258 268259 268260 268261 268262 268263 268264 268265 268266 268267 ; do
               repopick ${com} 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
@@ -84,14 +76,6 @@ if [ "${rev}" == "14.1" ]; then
 fi
 if [ "${rev}" == "15.1" ]; then
       echo
-      #2020-01-05
-      for com in 266643 266644 266645 266646 266647 266648 266649 266650 266651 266863 ; do
-              repopick ${com} 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
-      done
-      #2020-02-05
-      for com in 268376 268180 268181 268182 268183 268184 268185 268186 268187 268188 268189 268190 ; do
-              repopick ${com} 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
-      done
       #2020-03-05
       for com in 270122 270123 270124 270125 270126 270127 270128 270129 270130 270290 ; do
               repopick ${com} 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
@@ -103,14 +87,6 @@ if [ "${rev}" == "15.1" ]; then
 fi
 if [ "${rev}" == "16.0" ]; then
       echo
-      #2020-01-05
-      for com in 266591 266592 266593 266594 266595 266596 266597 266598 266599 266862 ; do
-              repopick ${com} 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
-      done
-      #2020-02-05
-      for com in 268163 268164 268165 268166 268167 268168 268170 268171 268173 268174 268175 268176 268177 268178 268179 268375 ; do
-              repopick ${com} 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
-      done
       #2020-03-05
       for com in 270110 270111 270112 270113 270114 270115 270116 270117 270118 270279 ; do
               repopick ${com} 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
