@@ -26,7 +26,7 @@ echo
 while true; do
     read -p "Do you wish to sync the repository? Type Y/y or N/n and hit return: " yn
     case $yn in
-        [Yy]* ) echo; repo sync -j "${dthr}" -c --no-tags --no-clone-bundle --force-sync 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"; break;;
+        [Yy]* ) echo; repo sync -v -j "${dthr}" -c --no-tags --no-clone-bundle --force-sync 2>&1; break;;
         [Nn]* ) echo; break;;
     esac
 done
@@ -63,11 +63,11 @@ if [ "${rev}" == "14.1" ]; then
       echo
       #2020-02-05
       for com in 268256 268257 268258 268259 268260 268261 268262 268263 268264 268265 268266 268267 ; do
-              repopick ${com} 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
+              repopick ${com} 2>&1
       done
       #2020-03-05
       for com in 270196 270217 270218 270219 270220 270221 270222 270223 ; do
-              repopick ${com} 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
+              repopick ${com} 2>&1
       done
       echo
       echo "Press ENTER to continue..."
@@ -78,7 +78,7 @@ if [ "${rev}" == "15.1" ]; then
       echo
       #2020-03-05
       for com in 270122 270123 270124 270125 270126 270127 270128 270129 270130 270290 ; do
-              repopick ${com} 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
+              repopick ${com} 2>&1
       done
       echo
       echo "Press ENTER to continue..."
@@ -89,7 +89,7 @@ if [ "${rev}" == "16.0" ]; then
       echo
       #2020-03-05
       for com in 270110 270111 270112 270113 270114 270115 270116 270117 270118 270279 ; do
-              repopick ${com} 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
+              repopick ${com} 2>&1
       done
       echo
       echo "Press ENTER to continue..."
@@ -99,7 +99,7 @@ fi
 if [ "${rev}" == "17.1" ]; then
       echo
       #soong: java: Specify larger heap size for metalava
-      repopick -f 266411 2>&1 | tee --append "${HOME}/android/sync-${rev}.log"
+      repopick -f 266411 2>&1
       echo
       echo "Press ENTER to continue..."
       echo
@@ -139,12 +139,6 @@ if [ "${rev}" == "17.1" ]; then
 	outputtag="TEST-"
 fi
 mv -v "${output}" "${HOME}/Schreibtisch/${outputtag}${output}"
-if [ -f ${HOME}/android/sync-${rev}.log ]; then
-      cat "${HOME}/android/sync-${rev}.log" | grep -A 1 "Von" >> "${HOME}/Schreibtisch/change-${rev}.log"
-      cat "${HOME}/android/sync-${rev}.log" | grep -A 1 "Applying change number" >> "${HOME}/Schreibtisch/change-${rev}.log"
-      cat "${HOME}/android/sync-${rev}.log" | grep -B 1 ".." >> "${HOME}/Schreibtisch/change-${rev}.log"
-      rm -fv ${HOME}/android/sync-${rev}.log
-fi
 pkill java
 echo
 while true; do
