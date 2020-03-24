@@ -46,7 +46,7 @@ echo
 while true; do
     read -p "Do you wish to build clean? Type Y/y or N/n and hit return: " yn
     case $yn in
-        [Yy]* ) echo; rm -rfv out; break;;
+        [Yy]* ) echo; rm -rfv ./out; break;;
         [Nn]* ) echo; break;;
     esac
 done
@@ -127,12 +127,12 @@ echo "Press ENTER to continue..."
 echo
 read -s
 if [ "$rev" == "14.1" ] || [ "$rev" == "15.1" ]; then
-    rm -rfv obj/PACKAGING/target_files_intermediates/lineage_${dev}-target_files-*
+    rm -rfv ./obj/PACKAGING/target_files_intermediates/lineage_${dev}-target_files-*
 fi
-rm -fv system/build.prop
-rm -fv obj/ETC/system_build_prop_intermediates/build.prop
-rm -fv lineage_${dev}-ota-*.zip
-rm -fv lineage-${rev}-*-UNOFFICIAL-${dev}.zip.md5sum
+rm -fv ./system/build.prop
+rm -fv ./obj/ETC/system_build_prop_intermediates/build.prop
+rm -fv ./lineage_${dev}-ota-*.zip
+rm -fv ./lineage-${rev}-*-UNOFFICIAL-${dev}.zip.md5sum
 output="$(ls lineage-${rev}-*-UNOFFICIAL-${dev}.zip)"
 outputtag=""
 if [ "${rev}" == "17.1" ]; then
