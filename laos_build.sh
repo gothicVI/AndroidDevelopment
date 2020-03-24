@@ -51,9 +51,6 @@ while true; do
     esac
 done
 echo
-echo "Press ENTER to continue..."
-echo
-read -s
 export LC_ALL=C
 source build/envsetup.sh
 echo
@@ -70,9 +67,6 @@ if [ "${rev}" == "14.1" ]; then
               repopick ${com} 2>&1
       done
       echo
-      echo "Press ENTER to continue..."
-      echo
-      read -s
 fi
 if [ "${rev}" == "15.1" ]; then
       echo
@@ -81,9 +75,6 @@ if [ "${rev}" == "15.1" ]; then
               repopick ${com} 2>&1
       done
       echo
-      echo "Press ENTER to continue..."
-      echo
-      read -s
 fi
 if [ "${rev}" == "16.0" ]; then
       echo
@@ -92,18 +83,12 @@ if [ "${rev}" == "16.0" ]; then
               repopick ${com} 2>&1
       done
       echo
-      echo "Press ENTER to continue..."
-      echo
-      read -s
 fi
 if [ "${rev}" == "17.1" ]; then
       echo
       #soong: java: Specify larger heap size for metalava
       repopick -f 266411 2>&1
       echo
-      echo "Press ENTER to continue..."
-      echo
-      read -s
 fi
 echo
 echo "The current security patch level for laos ${rev} is..."
