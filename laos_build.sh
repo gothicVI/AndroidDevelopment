@@ -27,7 +27,7 @@ while true; do
     read -p "Do you wish to sync the repository? Type Y/y or N/n and hit return: " yn
     case $yn in
         [Yy]* ) echo; repo sync -v -j "${dthr}" -c --no-tags --no-clone-bundle --force-sync 2>&1; break;;
-        [Nn]* ) echo; break;;
+        [Nn]* ) break;;
     esac
 done
 echo
@@ -39,15 +39,7 @@ while true; do
     case $ayn in
         [Aa]* ) echo; repo forall -c git gc --aggressive --prune=now && repo forall -c git repack -Ad && repo forall -c git prune; break;;
         [Yy]* ) echo; repo forall -c git gc --prune=now && repo forall -c git repack -Ad && repo forall -c git prune; break;;
-        [Nn]* ) echo; break;;
-    esac
-done
-echo
-while true; do
-    read -p "Do you wish to build clean? Type Y/y or N/n and hit return: " yn
-    case $yn in
-        [Yy]* ) echo; rm -rfv ./out; break;;
-        [Nn]* ) echo; break;;
+        [Nn]* ) break;;
     esac
 done
 echo
@@ -94,9 +86,13 @@ echo
 echo "The current security patch level for laos ${rev} is..."
 grep "PLATFORM_SECURITY_PATCH := " build/core/version_defaults.mk
 echo
-echo "Press ENTER to continue..."
-echo
-read -s
+while true; do
+    read -p "Do you wish to build clean? Type Y/y or N/n and hit return: " yn
+    case $yn in
+        [Yy]* ) echo; rm -rfv ./out; break;;
+        [Nn]* ) break;;
+    esac
+done
 echo
 breakfast "${dev}"
 croot
