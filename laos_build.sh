@@ -87,10 +87,11 @@ echo "The current security patch level for laos ${rev} is..."
 grep "PLATFORM_SECURITY_PATCH := " build/core/version_defaults.mk
 echo
 while true; do
-    read -p "Do you wish to build clean? Type Y/y or N/n and hit return: " yn
-    case $yn in
+    read -p "Do you wish to build clean? Type Y/y or N/n or A/a to abort and hit return: " yna
+    case $yna in
         [Yy]* ) echo; rm -rfv ./out; break;;
         [Nn]* ) break;;
+        [Aa]* ) exit;;
     esac
 done
 echo
