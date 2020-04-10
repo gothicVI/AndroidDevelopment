@@ -50,12 +50,12 @@ echo "Picking unmerged commits"
 echo
 if [ "${rev}" == "14.1" ]; then
       echo
-      #2020-02-05
-      for com in 268256 268257 268258 268259 268260 268261 268262 268263 268264 268265 268266 268267 ; do
-              repopick ${com} 2>&1
-      done
       #2020-03-05
       for com in 270196 270217 270218 270219 270220 270221 270222 270223 ; do
+              repopick ${com} 2>&1
+      done
+      #2020-04-05
+      for com in 272352 272353 272354 272355 272356 ; do
               repopick ${com} 2>&1
       done
       echo
@@ -72,6 +72,10 @@ if [ "${rev}" == "16.0" ]; then
       echo
       #2020-03-05
       for com in 270110 270111 270112 270113 270114 270115 270116 270117 270118 270279 ; do
+              repopick ${com} 2>&1
+      done
+      #2020-04-05
+      for com in 272358 272359 272360 272361 272362 272363 272364 272560 ; do
               repopick ${com} 2>&1
       done
       echo
