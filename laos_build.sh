@@ -23,6 +23,9 @@ else
 fi
 cd "${HOME}/android/laos_${rev}" || exit
 echo
+echo "The current security patch level for laos ${rev} is..."
+grep "PLATFORM_SECURITY_PATCH := " build/core/version_defaults.mk
+echo
 while true; do
     read -p "Do you wish to sync the repository? Type Y/y or N/n and hit return: " yn
     case $yn in
