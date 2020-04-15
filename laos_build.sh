@@ -27,14 +27,12 @@ echo "The current security patch level for laos ${rev} is..."
 grep "PLATFORM_SECURITY_PATCH := " build/core/version_defaults.mk
 echo
 if [ "${rev}" == "14.1" ]; then
-    wget -q "https://raw.githubusercontent.com/LineageOS/android_build/cm-14.1/core/version_defaults.mk"
+    url="https://raw.githubusercontent.com/LineageOS/android_build/cm-14.1/core/version_defaults.mk"
 else
     url="https://raw.githubusercontent.com/LineageOS/android_build/lineage-${rev}/core/version_defaults.mk"
-    wget -q ${url}
 fi
 echo "The current remote security patch level for laos ${rev} is..."
-grep "PLATFORM_SECURITY_PATCH := " version_defaults.mk
-rm -f version_defaults.mk
+wget -q ${url} -O - | grep "PLATFORM_SECURITY_PATCH := "
 echo
 while true; do
     read -p "Do you wish to sync the repository? Type Y/y or N/n and hit return: " yn
