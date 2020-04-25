@@ -12,7 +12,7 @@ fi
 
 cd "${HOME}/android/laos_${rev}/.repo/repo" || exit
 git pull
-DIFF=$(diff repo ${HOME}/bin/repo)
+DIFF=$(diff repo "${HOME}/bin/repo")
 if [ "${DIFF}" != "" ]; then
     echo ""
     diff repo "${HOME}/bin/repo"
@@ -32,7 +32,7 @@ else
     url="https://raw.githubusercontent.com/LineageOS/android_build/lineage-${rev}/core/version_defaults.mk"
 fi
 echo "The current remote security patch level for laos ${rev} is..."
-wget -q ${url} -O - | grep "PLATFORM_SECURITY_PATCH := "
+wget -q "${url}" -O - | grep "PLATFORM_SECURITY_PATCH := "
 echo
 while true; do
     read -p "Do you wish to sync the repository? Type Y/y or N/n and hit return: " yn
@@ -128,13 +128,13 @@ echo "Press ENTER to continue..."
 echo
 read -s
 if [ "$rev" == "14.1" ] || [ "$rev" == "15.1" ]; then
-    rm -rfv ./obj/PACKAGING/target_files_intermediates/lineage_${dev}-target_files-*
+    rm -rfv "./obj/PACKAGING/target_files_intermediates/lineage_${dev}-target_files-*"
 fi
 rm -fv ./system/build.prop
 rm -fv ./obj/ETC/system_build_prop_intermediates/build.prop
-rm -fv ./lineage_${dev}-ota-*.zip
-rm -fv ./lineage-${rev}-*-UNOFFICIAL-${dev}.zip.md5sum
-output="$(ls lineage-${rev}-*-UNOFFICIAL-${dev}.zip)"
+rm -fv "./lineage_${dev}-ota-*.zip"
+rm -fv "./lineage-${rev}-*-UNOFFICIAL-${dev}.zip.md5sum"
+output="$(ls "lineage-${rev}-*-UNOFFICIAL-${dev}.zip")"
 outputtag=""
 if [ "${rev}" == "17.1" ]; then
 	outputtag="TEST-"
@@ -145,7 +145,7 @@ echo
 while true; do
     read -p "Do you wish to clean the out-directory? Type Y/y or N/n and hit return: " yn
     case $yn in
-        [Yy]* ) echo; rm -rfv ${HOME}/android/laos_${rev}/out; break;;
+        [Yy]* ) echo; rm -rfv "${HOME}/android/laos_${rev}/out; break";;
         [Nn]* ) echo; break;;
     esac
 done
