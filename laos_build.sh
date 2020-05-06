@@ -37,7 +37,14 @@ echo
 while true; do
     read -p "Do you wish to sync the repository? Type Y/y or N/n and hit return: " yn
     case $yn in
-        [Yy]* ) echo; repo sync -v -j "${dthr}" -c --no-tags --no-clone-bundle --force-sync 2>&1; break;;
+        [Yy]* ) echo; \
+                if [ "${dev}" == "potter" ] || [ "${dev}" == "thea" ]; then
+                      rm -rfv ./device/motorola ./kernel/motorola ./vendor/motorola
+                elif [ "${dev}" == "sargo" ]; then
+                      rm -rfv ./device/google ./kernel/google ./vendor/google
+                fi; \
+                echo; \
+                repo sync -v -j "${dthr}" -c --no-tags --no-clone-bundle --force-sync 2>&1; break;;
         [Nn]* ) break;;
     esac
 done
