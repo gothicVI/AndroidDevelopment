@@ -166,8 +166,17 @@ function cleanup {
 
 ### START ###
 
+clear
+echo
+echo "Update the repo commant..."
+echo "##########################"
+echo
 update_repo || exit
 cd "${HOME}/android/laos_${rev}" || exit
+clear
+echo
+echo "Sync the repository..."
+echo "######################"
 echo
 compare_security_patch_level || exit
 echo
@@ -183,11 +192,20 @@ while true; do
         [Aa]* ) exit;;
     esac
 done
+clear
+echo
+echo "Start the actual build..."
+echo "#########################"
 echo
 build || exit
 echo
 echo "Press ENTER to continue..."
 echo
 read -s
+clear
+echo
+echo "Cleanup..."
+echo "##########"
+echo
 cleanup || exit
 exit
