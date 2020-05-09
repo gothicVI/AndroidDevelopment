@@ -5,9 +5,9 @@ rev=$2
 thr=$3
 
 if [ "${thr}" == "" ]; then
-      dthr=$(nproc --all)
+    dthr=$(nproc --all)
 else
-      dthr="${thr}"
+    dthr="${thr}"
 fi
 
 cd "${HOME}/android/laos_${rev}/.repo/repo" || exit
@@ -38,13 +38,13 @@ while true; do
     read -p "Do you wish to sync the repository? Type Y/y or N/n and hit return: " yn
     case $yn in
         [Yy]* ) echo; \
-                if [ "${dev}" == "potter" ] || [ "${dev}" == "thea" ]; then
-                      rm -rfv ./device/motorola ./kernel/motorola ./vendor/motorola
-                elif [ "${dev}" == "sargo" ]; then
-                      rm -rfv ./device/google ./kernel/google ./vendor/google
-                fi; \
-                echo; \
-                repo sync -v -j "${dthr}" -c --no-tags --no-clone-bundle --force-sync 2>&1; break;;
+            if [ "${dev}" == "potter" ] || [ "${dev}" == "thea" ]; then
+                rm -rfv ./device/motorola ./kernel/motorola ./vendor/motorola
+            elif [ "${dev}" == "sargo" ]; then
+                rm -rfv ./device/google ./kernel/google ./vendor/google
+            fi; \
+            echo; \
+            repo sync -v -j "${dthr}" -c --no-tags --no-clone-bundle --force-sync 2>&1; break;;
         [Nn]* ) break;;
     esac
 done
@@ -67,34 +67,34 @@ echo
 echo "Picking unmerged commits"
 echo
 if [ "${rev}" == "14.1" ]; then
-      echo
-      #2020-04-05
-      for com in 272352 272353 272354 272355 272356 ; do
-              repopick ${com} 2>&1
-      done
-      echo
+    echo
+    #2020-04-05
+    for com in 272352 272353 272354 272355 272356 ; do
+        repopick ${com} 2>&1
+    done
+    echo
 fi
 if [ "${rev}" == "15.1" ]; then
-      echo
-      #2020-04-05
-      for com in 272393 272394 272395 272396 272397 272663 272816 ; do
-              repopick ${com} 2>&1
-      done
-      echo
+    echo
+    #2020-04-05
+    for com in 272393 272394 272395 272396 272397 272663 272816 ; do
+        repopick ${com} 2>&1
+    done
+    echo
 fi
 if [ "${rev}" == "16.0" ]; then
-      echo
-      #2020-05-05
-      for com in 275014 275015 275016 275017 275019 275020 275021 275022 275023 275024 275025 275026 275027 275028 275029 275030 275031 275194 ; do
-              repopick ${com} 2>&1
-      done
-      echo
+    echo
+    #2020-05-05
+    for com in 275014 275015 275016 275017 275019 275020 275021 275022 275023 275024 275025 275026 275027 275028 275029 275030 275031 275194 ; do
+        repopick ${com} 2>&1
+    done
+    echo
 fi
 if [ "${rev}" == "17.1" ]; then
-      echo
-      #soong: java: Specify larger heap size for metalava
-      repopick -f 266411 2>&1
-      echo
+    echo
+    #soong: java: Specify larger heap size for metalava
+    repopick -f 266411 2>&1
+    echo
 fi
 echo
 echo "The current security patch level for laos ${rev} is..."
@@ -112,10 +112,10 @@ echo
 breakfast "${dev}"
 croot
 if [ "${thr}" == "" ]; then
-	brunch "${dev}"
+    brunch "${dev}"
 else
-	breakfast "${dev}"
-	make bacon -j "${thr}"
+    breakfast "${dev}"
+    make bacon -j "${thr}"
 fi
 cd "${OUT}" || exit
 echo
@@ -132,7 +132,7 @@ rm -fv "./lineage-${rev}-"*"-UNOFFICIAL-${dev}.zip.md5sum"
 output="$(ls "lineage-${rev}-"*"-UNOFFICIAL-${dev}.zip")"
 outputtag=""
 if [ "${rev}" == "17.1" ]; then
-	outputtag="TEST-"
+    outputtag="TEST-"
 fi
 mv -v "${output}" "${HOME}/Schreibtisch/${outputtag}${output}"
 pkill java
