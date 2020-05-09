@@ -124,6 +124,8 @@ function sync_repository {
 }
 
 function build {
+    export LC_ALL=C
+    source build/envsetup.sh
     breakfast "${dev}"
     croot
     if [ "${thr}" == "" ]; then
