@@ -75,8 +75,8 @@ function pick_unmerged_commits {
     fi
     if [ "${rev}" == "15.1" ]; then
         echo
-        #2020-04-05
-        for com in 272393 272394 272395 272396 272397 272663 272816 ; do
+        #2020-05-05
+        for com in 275082 275083 275084 275085 275086 275087 275088 275089 275090 275091 275092 275341 ; do
             repopick ${com} 2>&1
         done
     fi
