@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 dev=$1
 rev=$2
 thr=$3
