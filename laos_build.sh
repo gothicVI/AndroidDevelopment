@@ -16,7 +16,6 @@ fi
 
 function update_repo {
     cd "${HOME}/android/laos_${rev}/.repo/repo" || exit
-    echo
     git checkout stable || exit
     git pull || exit
     echo
