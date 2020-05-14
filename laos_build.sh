@@ -17,7 +17,10 @@ fi
 function update_repo {
     cd "${HOME}/android/laos_${rev}/.repo/repo" || exit
     echo
-    git pull
+    git checkout stable || exit
+    git pull || exit
+    echo
+    git status
     echo
     DIFF=$(diff "${HOME}/bin/repo" repo)
     if [ "${DIFF}" != "" ]; then
