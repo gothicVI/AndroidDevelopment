@@ -18,14 +18,13 @@ function update_repo {
     cd "${HOME}/android/laos_${rev}/.repo/repo" || exit
     echo
     git pull
-    DIFF=$(diff repo "${HOME}/bin/repo")
+    echo
+    DIFF=$(diff "${HOME}/bin/repo" repo)
     if [ "${DIFF}" != "" ]; then
-        echo
-        diff repo "${HOME}/bin/repo"
+        kdiff3 "${HOME}/bin/repo" repo || diff "${HOME}/bin/repo" repo
         echo
         cp -vi repo "${HOME}/bin/repo"
     else
-        echo
         echo "repo unmodified"
     fi
 }
@@ -72,27 +71,27 @@ function pick_unmerged_commits {
         echo
         #2020-05-05
         for com in 274970 274971 274972 274973 274974 274975 274976 274977 275018 275149 275150 ; do
-            repopick ${com} 2>&1
+            repopick ${com} 2>&1 || exit
         done
     fi
     if [ "${rev}" == "15.1" ]; then
         echo
         #2020-05-05
         for com in 275082 275083 275084 275085 275086 275087 275088 275089 275090 275091 275092 275341 ; do
-            repopick ${com} 2>&1
+            repopick ${com} 2>&1 || exit
         done
     fi
     if [ "${rev}" == "16.0" ]; then
         echo
         #2020-05-05
         for com in 275014 275015 275016 275017 275019 275020 275021 275022 275023 275024 275025 275026 275027 275028 275029 275030 275031 275194 ; do
-            repopick ${com} 2>&1
+            repopick ${com} 2>&1 || exit
         done
     fi
     if [ "${rev}" == "17.1" ]; then
         echo
         #soong: java: Specify larger heap size for metalava
-        repopick -f 266411 2>&1
+        repopick -f 266411 2>&1 || exit
     fi
 }
 
@@ -107,7 +106,7 @@ function sync_repository {
                         rm -rfv ./device/google ./kernel/google ./vendor/google
                     fi
                     echo
-                    repo sync -v -j "${dthr}" -c --no-tags --no-clone-bundle --force-sync 2>&1
+                    repo sync -v -j "${dthr}" -c --no-tags --no-clone-bundle --force-sync 2>&1 || exit
                     echo
                     local_security_patch_level || exit
                     echo
