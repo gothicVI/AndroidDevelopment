@@ -141,6 +141,16 @@ function build {
 }
 
 function cleanup {
+    # Get the last column of the grep, i.e., the actual security patch date
+    securitypatchdate="$(grep "PLATFORM_SECURITY_PATCH := " "${HOME}/android/laos_${rev}/build/core/version_defaults.mk" | awk '{print $NF}')"
+    output="$(ls "lineage-${rev}-"*"-UNOFFICIAL-${dev}.zip")"
+    # Remove the '.zip' ending
+    outputname="$(basename ${output} .zip)"
+    outputtag=""
+    if [ "${rev}" == "17.1" ]; then
+        outputtag="TEST-"
+    fi
+    # Remove stuff that gets rebuild even if we build again non-clean
     if [ "$rev" == "14.1" ] || [ "$rev" == "15.1" ]; then
         rm -rfv "./obj/PACKAGING/target_files_intermediates/lineage_${dev}-target_files-"*
     fi
@@ -148,12 +158,8 @@ function cleanup {
     rm -fv ./obj/ETC/system_build_prop_intermediates/build.prop
     rm -fv "./lineage_${dev}-ota-"*.zip
     rm -fv "./lineage-${rev}-"*"-UNOFFICIAL-${dev}.zip.md5sum"
-    output="$(ls "lineage-${rev}-"*"-UNOFFICIAL-${dev}.zip")"
-    outputtag=""
-    if [ "${rev}" == "17.1" ]; then
-        outputtag="TEST-"
-    fi
-    mv -v "${output}" "${HOME}/Schreibtisch/${outputtag}${output}"
+    # Move/Rename the output zip
+    mv -v "${output}" "${HOME}/Schreibtisch/${outputtag}${outputname}_security-patch-date_${securitypatchdate}.zip"
     pkill java
     echo
     while true; do
