@@ -71,22 +71,31 @@ function pick_unmerged_commits {
     echo "Picking unmerged commits"
     if [ "${rev}" == "14.1" ]; then
         echo
-        #2020-05-05
-        for com in 274970 274971 274972 274973 274974 274975 274976 274977 275018 275149 275150 ; do
+        #2020-06-05
+        source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
+        repopick_topic n-asb-2020-06 || exit
+        echo
+        for com in 275149 275150 277003 ; do
             repopick ${com} 2>&1 || exit
         done
     fi
     if [ "${rev}" == "15.1" ]; then
         echo
-        #2020-05-05
-        for com in 275082 275083 275084 275085 275086 275087 275088 275089 275090 275091 275092 275341 ; do
+        #2020-06-05
+        source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
+        repopick_topic O_asb_2020-06 || exit
+        echo
+        for com in 277829 ; do
             repopick ${com} 2>&1 || exit
         done
     fi
     if [ "${rev}" == "16.0" ]; then
         echo
-        #2020-05-05
-        for com in 275014 275015 275016 275017 275019 275020 275021 275022 275023 275024 275025 275026 275027 275028 275029 275030 275031 275194 ; do
+        #2020-06-05
+        source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
+        repopick_topic P_asb_2020-06 || exit
+        echo
+        for com in 277443 ; do
             repopick ${com} 2>&1 || exit
         done
     fi
