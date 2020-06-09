@@ -15,9 +15,9 @@ fi
 ### FUNCTIONS ###
 
 function update_repo {
-    cd "${HOME}/android/laos_${rev}/.repo/repo" || exit
-    git checkout stable || exit
-    git pull || exit
+    cd "${HOME}/android/laos_${rev}/.repo/repo" || exit 1
+    git checkout stable || exit 1
+    git pull || exit 1
     echo
     git status
     echo
@@ -29,11 +29,13 @@ function update_repo {
     else
         echo "repo unmodified"
     fi
+    return 0
 }
 
 function local_security_patch_level {
     echo "The current security patch level for laos ${rev} is..."
     grep "PLATFORM_SECURITY_PATCH := " build/core/version_defaults.mk
+    return 0
 }
 
 function remote_security_patch_level {
@@ -44,12 +46,14 @@ function remote_security_patch_level {
     fi
     echo "The current remote security patch level for laos ${rev} is..."
     wget -q "${url}" -O - | grep "PLATFORM_SECURITY_PATCH := "
+    return 0
 }
 
 function compare_security_patch_level {
-    local_security_patch_level || exit
+    local_security_patch_level || exit 1
     echo
-    remote_security_patch_level || exit
+    remote_security_patch_level || exit 1
+    return 0
 }
 
 function clean_repository {
@@ -65,6 +69,7 @@ function clean_repository {
             [Nn]* ) break;;
         esac
     done
+    return 0
 }
 
 function pick_unmerged_commits {
@@ -73,37 +78,38 @@ function pick_unmerged_commits {
         echo
         #2020-06-05
         source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
-        repopick_topic n-asb-2020-06 || exit
+        repopick_topic n-asb-2020-06 || exit 1
         echo
         for com in 275149 275150 277003 ; do
-            repopick ${com} 2>&1 || exit
+            repopick ${com} 2>&1 || exit 1
         done
     fi
     if [ "${rev}" == "15.1" ]; then
         echo
         #2020-06-05
         source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
-        repopick_topic O_asb_2020-06 || exit
+        repopick_topic O_asb_2020-06 || exit 1
         echo
         for com in 277829 ; do
-            repopick ${com} 2>&1 || exit
+            repopick ${com} 2>&1 || exit 1
         done
     fi
     if [ "${rev}" == "16.0" ]; then
         echo
         #2020-06-05
         source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
-        repopick_topic P_asb_2020-06 || exit
+        repopick_topic P_asb_2020-06 || exit 1
         echo
         for com in 277443 ; do
-            repopick ${com} 2>&1 || exit
+            repopick ${com} 2>&1 || exit 1
         done
     fi
     if [ "${rev}" == "17.1" ]; then
         echo
         #soong: java: Specify larger heap size for metalava
-        repopick -f 266411 2>&1 || exit
+        repopick -f 266411 2>&1 || exit 1
     fi
+    return 0
 }
 
 function sync_repository {
@@ -117,36 +123,38 @@ function sync_repository {
                         rm -rfv ./device/google ./kernel/google ./vendor/google
                     fi
                     echo
-                    repo sync -v -j "${dthr}" -c --no-tags --no-clone-bundle --force-sync 2>&1 || exit
+                    repo sync -v -j "${dthr}" -c --no-tags --no-clone-bundle --force-sync 2>&1 || exit 1
                     echo
-                    local_security_patch_level || exit
+                    local_security_patch_level || exit 1
                     echo
-                    clean_repository || exit
+                    clean_repository || exit 1
                     echo
                     export LC_ALL=C
                     source build/envsetup.sh
                     echo
-                    pick_unmerged_commits || exit
+                    pick_unmerged_commits || exit 1
                     echo
-                    local_security_patch_level || exit
+                    local_security_patch_level || exit 1
                     break;;
             [Nn]* ) break;;
         esac
     done
+    return 0
 }
 
 function build {
     export LC_ALL=C
-    source build/envsetup.sh
-    breakfast "${dev}"
+    source build/envsetup.sh || exit 1
+    breakfast "${dev}" || exit 1
     croot
     if [ "${thr}" == "" ]; then
-        brunch "${dev}"
+        brunch "${dev}" || exit 1
     else
-        breakfast "${dev}"
-        make bacon -j "${thr}"
+        breakfast "${dev}" || exit 1
+        make bacon -j "${thr}" || exit 1
     fi
-    cd "${OUT}" || exit
+    cd "${OUT}" || exit 1
+    return 0
 }
 
 function cleanup {
@@ -180,6 +188,7 @@ function cleanup {
             [Nn]* ) break;;
         esac
     done
+    return 0
 }
 
 ### START ###
@@ -189,16 +198,16 @@ echo
 echo "Update the repo commant..."
 echo "##########################"
 echo
-update_repo || exit
-cd "${HOME}/android/laos_${rev}" || exit
+update_repo || exit 1
+cd "${HOME}/android/laos_${rev}" || exit 1
 clear
 echo
 echo "Sync the repository..."
 echo "######################"
 echo
-compare_security_patch_level || exit
+compare_security_patch_level || exit 1
 echo
-sync_repository || exit
+sync_repository || exit 1
 echo
 while true; do
     read -p "Do you wish to build clean? Type Y/y or N/n or A/a to abort and hit return: " yna
@@ -207,7 +216,7 @@ while true; do
                 rm -rfv ./out
                 break;;
         [Nn]* ) break;;
-        [Aa]* ) exit;;
+        [Aa]* ) exit 0;;
     esac
 done
 clear
@@ -215,7 +224,7 @@ echo
 echo "Start the actual build..."
 echo "#########################"
 echo
-build || exit
+build || exit 1
 echo
 echo "Press ENTER to continue..."
 echo
@@ -225,5 +234,5 @@ echo
 echo "Cleanup..."
 echo "##########"
 echo
-cleanup || exit
-exit
+cleanup || exit 1
+exit 0
