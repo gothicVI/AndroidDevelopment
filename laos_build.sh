@@ -96,11 +96,11 @@ function pick_unmerged_commits {
     fi
     if [ "${rev}" == "16.0" ]; then
         echo
-        #2020-06-05
+        #2020-07-05
         source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
-        repopick_topic P_asb_2020-06 || exit 1
+        repopick_topic P_asb_2020-07 || exit 1
         echo
-        for com in 277443 ; do
+        for com in 280632 280654 280655 280656 280856 ; do
             repopick ${com} 2>&1 || exit 1
         done
     fi
