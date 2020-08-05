@@ -76,41 +76,41 @@ function pick_unmerged_commits {
     echo "Picking unmerged commits"
     if [ "${rev}" == "14.1" ]; then
         echo
-        #2020-07-05
+        #2020-08-05
         source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
-        repopick_topic n-asb-2020-07 || exit 1
+        repopick_topic n-asb-2020-08 || exit 1
         echo
-        for com in 280665 280666 280667 280668 280669 ; do
+        for com in 282465 282466 282467 282468 282469 282470 282471 ; do
             repopick ${com} 2>&1 || exit 1
         done
     fi
     if [ "${rev}" == "15.1" ]; then
         echo
-        #2020-07-05
+        #2020-08-05
         source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
-        repopick_topic O_asb_2020-07 || exit 1
+        repopick_topic O_asb_2020-08 || exit 1
         echo
-        for com in 280661 280662 280663 280664 281415 ; do
+        for com in 282536 282537 282538 282539 282540 282541 282542 282543 282544 282545 282546 ; do
             repopick ${com} 2>&1 || exit 1
         done
     fi
     if [ "${rev}" == "16.0" ]; then
         echo
-        #2020-07-05
+        #2020-08-05
         source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
-        repopick_topic P_asb_2020-07 || exit 1
+        repopick_topic P_asb_2020-08 || exit 1
         echo
-        for com in 280632 280654 280655 280656 280856 ; do
+        for com in 282397 282398 282399 282400 282401 282402 282403 282404 282405 282406 282407 282519 ; do
             repopick ${com} 2>&1 || exit 1
         done
     fi
     if [ "${rev}" == "17.1" ]; then
         echo
-        #2020-07-05
+        #2020-08-05
         source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
-        repopick_topic android-10.0.0_r40 || exit 1
+        repopick_topic android-10.0.0_r41 || exit 1
         echo
-        for com in 280574 280575 280576 280577 ; do
+        for com in 282381 282382 282383 282384 282385 282386 282387 ; do
             repopick ${com} 2>&1 || exit 1
         done
         echo
