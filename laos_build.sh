@@ -191,7 +191,8 @@ function cleanup {
         read -p "Do you wish to clean the out-directory? Type Y/y or N/n and hit return: " yn
         case $yn in
             [Yy]* ) echo
-                    rm -rfv "${HOME}/android/laos_${rev}/out"
+                    cd "${HOME}/android/laos_${rev}"
+                    rm -rfv ./out
                     break;;
             [Nn]* ) break;;
         esac
