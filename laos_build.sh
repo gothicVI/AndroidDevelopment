@@ -188,11 +188,15 @@ function cleanup {
     pkill java
     echo
     while true; do
-        read -p "Do you wish to clean the out-directory? Type Y/y or N/n and hit return: " yn
+        read -p "Do you wish to clean the out-directory? Type Y/y for yes, D/d for device specific only, or N/n for no and hit return: " yn
         case $yn in
             [Yy]* ) echo
                     cd "${HOME}/android/laos_${rev}"
                     rm -rfv ./out
+                    break;;
+            [Dd]* ) echo
+                    cd "${HOME}/android/laos_${rev}/out"
+                    rm -rfv $(find . -iname "*${dev}*")
                     break;;
             [Nn]* ) break;;
         esac
