@@ -76,41 +76,41 @@ function pick_unmerged_commits {
     echo "Picking unmerged commits"
     if [ "${rev}" == "14.1" ]; then
         echo
-        #2020-08-05
+        #2020-09-05
         source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
-        repopick_topic n-asb-2020-08 || exit 1
+        repopick_topic n-asb-2020-09 || exit 1
         echo
-        for com in 282465 282466 282467 282468 282469 282470 282471 ; do
+        for com in 285822 228523 285824 285825 285826 285827 285828 285829 285830 285831 285928 285933 285833 285834 286097 ; do
             repopick ${com} 2>&1 || exit 1
         done
     fi
     if [ "${rev}" == "15.1" ]; then
         echo
-        #2020-08-05
+        #2020-09-05
         source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
-        repopick_topic O_asb_2020-08 || exit 1
+        repopick_topic O_asb_2020-09 || exit 1
         echo
-        for com in 282536 282537 282538 282539 282540 282541 282542 282543 282544 282545 282546 ; do
+        for com in 285904 285905 285906 285907 285908 285909 285910 285911 285912 285913 285914 285915 285916 285917 285918 285919 285920 286073 ; do
             repopick ${com} 2>&1 || exit 1
         done
     fi
     if [ "${rev}" == "16.0" ]; then
         echo
-        #2020-08-05
+        #2020-09-05
         source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
-        repopick_topic P_asb_2020-08 || exit 1
+        repopick_topic P_asb_2020-09 || exit 1
         echo
-        for com in 282397 282398 282399 282400 282401 282402 282403 282404 282405 282406 282407 282519 ; do
+        for com in 285881 285882 285883 285884 285885 285886 285887 285888 285889 285890 285891 285892 285893 285894 285895 285896 285897 285898 285899 285900 285901 286071 ; do
             repopick ${com} 2>&1 || exit 1
         done
     fi
     if [ "${rev}" == "17.1" ]; then
         echo
-        #2020-08-05
+        #2020-09-05
         source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
-        repopick_topic android-10.0.0_r41 || exit 1
+        repopick_topic Q_asb_2020-09 || exit 1
         echo
-        for com in 282381 282382 282383 282384 282385 282386 282387 ; do
+        for com in 285836 285856 285857 285858 285859 285860 285861 285862 285863 285864 285865 285866 285867 285868 285869 285870 285871 285872 285873 285874 285875 285876 285877 286036 286037 ; do
             repopick ${com} 2>&1 || exit 1
         done
         echo
