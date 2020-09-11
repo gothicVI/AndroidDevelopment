@@ -79,40 +79,24 @@ function pick_unmerged_commits {
         #2020-09-05
         source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
         repopick_topic n-asb-2020-09 || exit 1
-        echo
-        for com in 285822 228523 285824 285825 285826 285827 285828 285829 285830 285831 285928 285933 285833 285834 286097 ; do
-            repopick ${com} 2>&1 || exit 1
-        done
     fi
     if [ "${rev}" == "15.1" ]; then
         echo
         #2020-09-05
         source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
         repopick_topic O_asb_2020-09 || exit 1
-        echo
-        for com in 285904 285905 285906 285907 285908 285909 285910 285911 285912 285913 285914 285915 285916 285917 285918 285919 285920 286073 ; do
-            repopick ${com} 2>&1 || exit 1
-        done
     fi
     if [ "${rev}" == "16.0" ]; then
         echo
         #2020-09-05
         source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
         repopick_topic P_asb_2020-09 || exit 1
-        echo
-        for com in 285881 285882 285883 285884 285885 285886 285887 285888 285889 285890 285891 285892 285893 285894 285895 285896 285897 285898 285899 285900 285901 286071 ; do
-            repopick ${com} 2>&1 || exit 1
-        done
     fi
     if [ "${rev}" == "17.1" ]; then
         echo
         #2020-09-05
         source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
         repopick_topic Q_asb_2020-09 || exit 1
-        echo
-        for com in 285836 285856 285857 285858 285859 285860 285861 285862 285863 285864 285865 285866 285867 285868 285869 285870 285871 285872 285873 285874 285875 285876 285877 286036 286037 ; do
-            repopick ${com} 2>&1 || exit 1
-        done
         echo
         #soong: java: Specify larger heap size for metalava
         repopick -f 266411 2>&1 || exit 1
