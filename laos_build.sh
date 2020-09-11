@@ -77,6 +77,9 @@ function pick_unmerged_commits {
     if [ "${rev}" == "14.1" ]; then
         echo
         #2020-09-05
+        for com in 286097 285833 285834 ; do
+            repopick ${com} 2>&1 || exit 1
+        done
         source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
         repopick_topic n-asb-2020-09 || exit 1
     fi
