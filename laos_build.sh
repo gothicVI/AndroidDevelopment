@@ -156,9 +156,9 @@ function cleanup {
     # Remove the '.zip' ending
     outputname="$(basename ${output} .zip)"
     outputtag=""
-    if [ "${rev}" == "17.1" ]; then
-        outputtag="TEST-"
-    fi
+#    if [ "${rev}" == "17.1" ]; then
+#        outputtag="TEST-"
+#    fi
     # Remove stuff that gets rebuild even if we build again non-clean
     if [ "$rev" == "14.1" ] || [ "$rev" == "15.1" ]; then
         rm -rfv "./obj/PACKAGING/target_files_intermediates/lineage_${dev}-target_files-"*
