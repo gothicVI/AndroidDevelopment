@@ -76,30 +76,27 @@ function pick_unmerged_commits {
     echo "Picking unmerged commits"
     if [ "${rev}" == "14.1" ]; then
         echo
-        #2020-09-05
-        for com in 286097 285833 285834 ; do
-            repopick ${com} 2>&1 || exit 1
-        done
+        #2020-10-05
         source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
-        repopick_topic n-asb-2020-09 || exit 1
+        repopick_topic n-asb-2020-10 || exit 1
     fi
     if [ "${rev}" == "15.1" ]; then
         echo
-        #2020-09-05
+        #2020-10-05
         source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
-        repopick_topic O_asb_2020-09 || exit 1
+        repopick_topic O_asb_2020-10 || exit 1
     fi
     if [ "${rev}" == "16.0" ]; then
         echo
-        #2020-09-05
+        #2020-10-05
         source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
-        repopick_topic P_asb_2020-09 || exit 1
+        repopick_topic P_asb_2020-10 || exit 1
     fi
     if [ "${rev}" == "17.1" ]; then
         echo
-        #2020-09-05
+        #2020-10-05
         source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
-        repopick_topic Q_asb_2020-09 || exit 1
+        repopick_topic Q_asb_2020-10 || exit 1
         echo
         #soong: java: Specify larger heap size for metalava
         repopick -f 266411 2>&1 || exit 1
