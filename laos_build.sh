@@ -90,7 +90,7 @@ function pick_unmerged_commits {
         echo
         #2020-10-05
         source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
-        repopick_topic P_asb_2020-10 || exit 1
+        repopick_topic P_asb-2020-10 || exit 1
     fi
     if [ "${rev}" == "17.1" ]; then
         echo
