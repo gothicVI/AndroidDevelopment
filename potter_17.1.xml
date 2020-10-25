@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
   <!-- potter device, kernel, vendor -->
-  <!-- <project name="eduardobastier93/device_motorola_potter" path="device/motorola/potter" remote="github" revision="lineage-17.0"/> -->
-  <!-- <project name="eduardobastier93/packages_resources_MotoActions" path="device/motorola/potter/MotoActions" remote="github" revision="10.0"/> -->
-  <!-- <project name="ZJRDroid/device_motorola_potter" path="device/motorola/potter" remote="github" revision="lineage-17.1"/> -->
-  <project name="gothicVI/device_motorola_potter" path="device/motorola/potter" remote="github" revision="lineage-17.1"/>
+  <!-- <project name="eduardobastier93/device_motorola_potter" path="device/motorola/potter" remote="github" revision="lineage-17.0"/>
+  <project name="eduardobastier93/packages_resources_MotoActions" path="device/motorola/potter/MotoActions" remote="github" revision="10.0"/> -->
+  <!-- <project name="gothicVI/android_device_motorola_potter-lineage-17.1" path="device/motorola/potter" remote="github" revision="lineage-17.1"/> -->
+  <project name="ZJRDroid/device_motorola_potter" path="device/motorola/potter" remote="github" revision="lineage-17.1"/>
   <project name="ZJRDroid/packages_resources_MotoActions" path="device/motorola/potter/MotoActions" remote="github" revision="lineage-17.0"/>
 
   <!-- <project name="eduardobastier93/kernel_motorola_potter" path="kernel/motorola/potter" remote="github" revision="10.0"/> -->
