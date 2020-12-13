@@ -107,15 +107,30 @@ function pick_unmerged_commits {
 
 function sync_repository {
     while true; do
-        read -p "Do you wish to sync the repository? Type Y/y or N/n and hit return: " yn
+        read -p "Do you wish to sync the repository? Type Y/y, D/d for device specific only, or N/n and hit return: " yn
         case $yn in
             [Yy]* ) echo
-#                    if [ "${dev}" == "potter" ] || [ "${dev}" == "thea" ]; then
-#                        rm -rfv ./device/motorola ./kernel/motorola ./vendor/motorola
-#                    elif [ "${dev}" == "sargo" ]; then
-#                        rm -rfv ./device/google ./kernel/google ./vendor/google
-#                    fi
                     rm -rfv ./device ./kernel ./vendor
+                    echo
+                    repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync 2>&1 || exit 1
+                    echo
+                    local_security_patch_level || exit 1
+                    echo
+                    clean_repository || exit 1
+                    echo
+                    export LC_ALL=C
+                    source build/envsetup.sh
+                    echo
+                    pick_unmerged_commits || exit 1
+                    echo
+                    local_security_patch_level || exit 1
+                    break;;
+            [Dd]* ) echo
+                    if [ "${dev}" == "potter" ] || [ "${dev}" == "thea" ]; then
+                        rm -rfv ./device/motorola ./kernel/motorola ./vendor/motorola
+                    elif [ "${dev}" == "sargo" ]; then
+                        rm -rfv ./device/google ./kernel/google ./vendor/google
+                    fi
                     echo
                     repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync 2>&1 || exit 1
                     echo
