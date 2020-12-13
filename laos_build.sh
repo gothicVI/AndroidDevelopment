@@ -110,11 +110,12 @@ function sync_repository {
         read -p "Do you wish to sync the repository? Type Y/y or N/n and hit return: " yn
         case $yn in
             [Yy]* ) echo
-                    if [ "${dev}" == "potter" ] || [ "${dev}" == "thea" ]; then
-                        rm -rfv ./device/motorola ./kernel/motorola ./vendor/motorola
-                    elif [ "${dev}" == "sargo" ]; then
-                        rm -rfv ./device/google ./kernel/google ./vendor/google
-                    fi
+#                    if [ "${dev}" == "potter" ] || [ "${dev}" == "thea" ]; then
+#                        rm -rfv ./device/motorola ./kernel/motorola ./vendor/motorola
+#                    elif [ "${dev}" == "sargo" ]; then
+#                        rm -rfv ./device/google ./kernel/google ./vendor/google
+#                    fi
+                    rm -rfv ./device ./kernel ./vendor
                     echo
                     repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync 2>&1 || exit 1
                     echo
