@@ -208,10 +208,12 @@ echo
 sync_repository || exit 1
 echo
 while true; do
-    read -p "Do you wish to build clean? Type Y/y or N/n or A/a to abort and hit return: " yna
+    read -p "Do you wish to build clean? Type Y/y, D/d for device specific only, or N/n, or A/a to abort and hit return: " yna
     case $yna in
         [Yy]* ) echo
                 rm -rfv ./out
+                break;;
+        [Dd]* ) rm -rfv $(find ./out/ -iname "*${dev}*")
                 break;;
         [Nn]* ) break;;
         [Aa]* ) exit 0;;
