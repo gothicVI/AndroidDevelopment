@@ -194,6 +194,15 @@ function cleanup {
             [Yy]* ) echo
                     cd "${HOME}/android/laos_${rev}"
                     rm -rfv ./out
+                    while true; do
+                        read -p "Do you wish to clean the prebuilts-directory? Type Y/y for yes or N/n for no and hit return: " yn
+                        case $yn in
+                            [Yy]* ) echo
+                                    rm -rfv ./prebuilts
+                                    break;;
+                            [Nn]* ) break;;
+                        esac
+                    done
                     break;;
             [Dd]* ) echo
                     cd "${HOME}/android/laos_${rev}/out"
