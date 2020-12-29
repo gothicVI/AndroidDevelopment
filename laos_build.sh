@@ -241,7 +241,16 @@ while true; do
         [Dd]* ) rm -rfv $(find ./out/ -iname "*${dev}*")
                 break;;
         [Nn]* ) break;;
-        [Aa]* ) exit 0;;
+        [Aa]* ) while true; do
+                    read -p "Do you wish to clean the prebuilts-directory? Type Y/y for yes or N/n for no and hit return: " yn
+                    case $yn in
+                        [Yy]* ) echo
+                                rm -rfv ./prebuilts
+                                break;;
+                        [Nn]* ) break;;
+                    esac
+                done
+                exit 0;;
     esac
 done
 clear
