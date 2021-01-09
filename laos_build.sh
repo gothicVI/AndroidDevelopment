@@ -120,7 +120,7 @@ function sync_repository {
             [Yy]* ) echo
                     rm -rfv ./device ./kernel ./vendor
                     echo
-                    repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync 2>&1 || exit 1
+                    repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 || exit 1
                     echo
                     local_security_patch_level || exit 1
                     echo
@@ -140,7 +140,7 @@ function sync_repository {
                         rm -rfv ./device/google ./kernel/google ./vendor/google
                     fi
                     echo
-                    repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync 2>&1 || exit 1
+                    repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 || exit 1
                     echo
                     local_security_patch_level || exit 1
                     echo

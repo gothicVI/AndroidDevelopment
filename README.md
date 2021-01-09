@@ -30,5 +30,5 @@ To add the repositories for the devices potter, sargo, and thea place the respec
 Then to sync up:
 
 ```bash
-repo sync -j $(nproc --all) -c --no-tags --no-clone-bundle --force-sync
+repo sync -j $(nproc --all) -c --no-tags --no-clone-bundle --force-sync --fail-fast
 ```
