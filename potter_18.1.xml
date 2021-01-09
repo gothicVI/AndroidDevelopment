@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <!-- potter device, kernel, vendor -->
+  <project name="PotterLab/lineage_device_motorola_potter" path="device/motorola/potter" remote="github" revision="lineage-18.1"/>
+
+  <project name="ZJRDroid/kernel_motorola_potter" path="kernel/motorola/potter" remote="github" revision="ten"/>
+
+  <project name="PotterLab/vendor_motorola_potter" path="vendor/motorola/potter" remote="github" revision="eleven"/>
+</manifest>
