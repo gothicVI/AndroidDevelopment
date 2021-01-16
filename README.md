@@ -27,7 +27,8 @@ To add the repositories for the devices potter, sargo, and thea place (or symlin
 * lineage-17.0: `potter_17.0.xml`, and `shared_17.0.xml`
 * lineage-17.1: `potter_17.1.xml`, `roomservice_sargo_17.1.xml`, `sargo_17.1.xml`, and `shared_17.1.xml`  
                 `mv roomservice_sargo_17.1.xml roomservice.xml`
-* lineage-18.1: `potter_18.1.xml`, and `shared_18.1.xml`
+* lineage-18.1: `potter_18.1.xml`, `roomservice_sargo_18.1.xml`, `sargo_18.1.xml`, and `shared_18.1.xml`  
+                `mv roomservice_sargo_18.1.xml roomservice.xml`
 
 Then to sync up:
 
