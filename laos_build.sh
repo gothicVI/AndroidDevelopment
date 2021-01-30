@@ -2,14 +2,12 @@
 
 set -e
 
-dev=$1
-rev=$2
-thr=$3
-
-if [ "${thr}" == "" ]; then
-    dthr=$(nproc --all)
+rev=$1
+dev=$2
+if [[ "$3" =~ ^[0-9]+$ ]]; then
+    # $3 is an integer
+    thr=$3
 else
-    dthr="${thr}"
 fi
 
 ### FUNCTIONS ###

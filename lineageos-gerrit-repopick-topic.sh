@@ -90,7 +90,7 @@ repopick_topic()
     croot
 
     #repo sync -q --force-sync
-    repo sync -v -j "${dthr}" -c --no-tags --no-clone-bundle --force-sync 2>&1 || exit
+    repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 || exit 1
   fi
 
   repopick -t "$_TOPIC"
