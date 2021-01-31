@@ -4,10 +4,17 @@ set -e
 
 rev=$1
 dev=$2
+myrepo=""
 if [[ "$3" =~ ^[0-9]+$ ]]; then
     # $3 is an integer
     thr=$3
+    if [ "${rev}" == "16.0" ] && [ "${dev}" == "potter" ]; then
+        myrepo=$4
+    fi
 else
+    if [ "${rev}" == "16.0" ] && [ "${dev}" == "potter" ]; then
+        myrepo=$3
+    fi
 fi
 
 ### FUNCTIONS ###
@@ -111,12 +118,30 @@ function pick_unmerged_commits {
     return 0
 }
 
+function switch_tree {
+    orig="boulzordev/android_device_motorola_potter"
+    new="gothicVI/android_device_motorola_potter-lineage-16.0"
+    file="${HOME}/git/AndroidDevelopment/potter_16.0.xml"
+    sed -i "s#${orig}#${new}#g" "${file}" || exit 1
+    return 0
+}
+
+function reverse_switch_tree {
+    cd "${HOME}/git/AndroidDevelopment" || exit 1
+    file="${HOME}/git/AndroidDevelopment/potter_16.0.xml"
+    git restore "${file}" || exit 1
+    return 0
+}
+
 function sync_repository {
     while true; do
         read -p "Do you wish to sync the repository? Type Y/y, D/d for device specific only, or N/n and hit return: " yn
         case $yn in
             [Yy]* ) echo
                     rm -rfv ./device ./kernel ./vendor
+                    if [ "${myrepo}" != "" ]; then
+                        switch_tree || exit 1
+                    fi
                     echo
                     repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 || exit 1
                     echo
@@ -136,6 +161,9 @@ function sync_repository {
                         rm -rfv ./device/motorola ./kernel/motorola ./vendor/motorola
                     elif [ "${dev}" == "sargo" ]; then
                         rm -rfv ./device/google ./kernel/google ./vendor/google
+                    fi
+                    if [ "${myrepo}" != "" ]; then
+                        switch_tree || exit 1
                     fi
                     echo
                     repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 || exit 1
@@ -275,4 +303,7 @@ echo "Cleanup..."
 echo "##########"
 echo
 cleanup || exit 1
+if [ "${myrepo}" != "" ]; then
+    reverse_switch_tree || exit 1
+fi
 exit 0
