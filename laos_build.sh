@@ -81,10 +81,9 @@ function pick_unmerged_commits {
     echo "Picking unmerged commits"
     if [ "${rev}" == "14.1" ]; then
         echo
-        #2021-01/02-05
+        #2021-03-05
         source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
-        repopick_topic n-asb-2021-01 || exit 1
-        repopick_topic n-asb-2021-02 || exit 1
+        repopick_topic n-asb-2021-03 || exit 1
     fi
     if [ "${rev}" == "15.1" ]; then
         echo
