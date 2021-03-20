@@ -66,10 +66,10 @@ function clean_repository {
         read -p "Do you wish to clean the repository? Type A/a for agressive or Y/y for normal or N/n and hit return: " ayn
         case $ayn in
             [Aa]* ) echo;
-                    repo forall -c git gc --aggressive --prune=now && repo forall -c git repack -Ad && repo forall -c git prune;
+                    repo forall -j 1 -c git gc --aggressive --prune=now && repo forall -j 1 -c git repack -Ad && repo forall -j 1 -c git prune;
                     break;;
             [Yy]* ) echo;
-                    repo forall -c git gc --prune=now && repo forall -c git repack -Ad && repo forall -c git prune;
+                    repo forall -j 1 -c git gc --prune=now && repo forall -j 1 -c git repack -Ad && repo forall -j 1 -c git prune;
                     break;;
             [Nn]* ) break;;
         esac
