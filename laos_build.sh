@@ -108,9 +108,9 @@ function pick_unmerged_commits {
     fi
     if [ "${rev}" == "18.1" ]; then
         echo
-        #2021-03-05
+        #2021-04-05
         source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
-        repopick_topic android-11.0.0_r32 || exit 1
+        repopick_topic android-11.0.0_r34 || exit 1
         echo
         #soong: java: Specify larger heap size for metalava
 #        repopick -f 289926 2>&1 || exit 1
