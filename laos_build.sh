@@ -219,7 +219,7 @@ function cleanup {
     rm -fv "./lineage_${dev}-ota-"*.zip
     rm -fv "./lineage-${rev}-"*"-UNOFFICIAL-${dev}.zip.md5sum"
     # Move/Rename the output zip
-    mv -v "${output}" "${HOME}/Schreibtisch/android/${outputtag}${outputname}_security-patch-date_${securitypatchdate}.zip"
+    mv -v "${output}" "${HOME}/Schreibtisch/android/${outputtag}${outputname}_security-patch-date_${securitypatchdate}${myrepo}.zip"
     pkill java
     echo
     while true; do
