@@ -157,10 +157,14 @@ function reverse_switch_tree {
 
 function sync_repository {
     while true; do
-        read -p "Do you wish to sync the repository? Type Y/y, D/d for device specific only, or N/n and hit return: " yn
+        if [ "${rev}" == "16.0" ] && [ "${dev}" == "potter" ]; then
+            rm -rfv ./device/motorola
+            yn="y"
+        else
+            read -p "Do you wish to sync the repository? Type Y/y, D/d for device specific only, or N/n and hit return: " yn
+        fi
         case $yn in
             [Yy]* ) echo
-                    rm -rfv ./device ./kernel ./vendor
                     if [ "${myrepo}" != "" ]; then
                         switch_tree || exit 1
                     fi
