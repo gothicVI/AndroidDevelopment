@@ -86,6 +86,7 @@ function pick_unmerged_commits {
         #2021-09-05
         #2021-10-05
         #2021-11-05
+        #2021-12-05
         source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
         repopick_topic n-asb-2021-07 || exit 1
         echo
@@ -108,6 +109,11 @@ function pick_unmerged_commits {
         echo
         read -s
         repopick_topic n-asb-2021-11 || exit 1
+        echo
+        local_security_patch_level || exit 1
+        echo
+        read -s
+        repopick_topic n-asb-2021-12 || exit 1
         echo
         local_security_patch_level || exit 1
         echo
@@ -136,18 +142,18 @@ function pick_unmerged_commits {
     fi
     if [ "${rev}" == "18.1" ]; then
         echo
-        #2021-11-05
+        #2021-12-05
         source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
-        repopick_topic R_asb_2021-11 || exit 1
+        repopick_topic R_asb_2021-12 || exit 1
         echo
         #soong: java: Specify larger heap size for metalava
 #        repopick -f 289926 2>&1 || exit 1
     fi
     if [ "${rev}" == "19.0" ]; then
         echo
-        #2021-11-05
+        #2021-12-05
         source "${HOME}/git/AndroidDevelopment/lineageos-gerrit-repopick-topic.sh"
-        repopick_topic android-12.0.0_r12 || exit 1
+        repopick_topic android-12.0.0_r16 || exit 1
         echo
     fi
     return 0
