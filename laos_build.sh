@@ -127,6 +127,10 @@ function pick_unmerged_commits {
     if [ "${rev}" == "16.0" ]; then
         echo
         #2021-12-05
+        repopick -f 320423 2>&1 || exit 1
+        cp android/default.xml .repo/manifests/ || exit 1
+        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast external/tremolo 2>&1 || exit 1
+        echo
         repopick -t P_asb_2021-12 || exit 1
     fi
     if [ "${rev}" == "17.1" ]; then
