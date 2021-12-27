@@ -87,6 +87,7 @@ function pick_unmerged_commits {
         #2021-10-05
         #2021-11-05
         #2021-12-05
+        #tzdb2021c_N
         repopick -t n-asb-2021-07 || exit 1
         echo
         local_security_patch_level || exit 1
@@ -115,6 +116,9 @@ function pick_unmerged_commits {
         repopick -t n-asb-2021-12 || exit 1
         echo
         local_security_patch_level || exit 1
+        echo
+        read -s
+        repopick -t tzdb2021c_N || exit 1
         echo
         read -s
     fi
