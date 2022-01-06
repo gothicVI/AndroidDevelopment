@@ -87,6 +87,7 @@ function pick_unmerged_commits {
         #2021-10-05
         #2021-11-05
         #2021-12-05
+        #2022-01-05
         #tzdb2021c_N
         repopick -t n-asb-2021-07 || exit 1
         echo
@@ -114,6 +115,11 @@ function pick_unmerged_commits {
         echo
         read -s
         repopick -t n-asb-2021-12 || exit 1
+        echo
+        local_security_patch_level || exit 1
+        echo
+        read -s
+        repopick -t n-asb-2022-01 || exit 1
         echo
         local_security_patch_level || exit 1
         echo
@@ -155,8 +161,8 @@ function pick_unmerged_commits {
     fi
     if [ "${rev}" == "19.0" ]; then
         echo
-        #2021-12-05
-        repopick -t android-12.0.0_r16 || exit 1
+        #2022-01-05
+        repopick -t android-12.0.0_r26 || exit 1
         echo
     fi
     return 0
