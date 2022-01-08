@@ -133,6 +133,7 @@ function pick_unmerged_commits {
         #2021-11-05 were never merged
         #2021-12-05
         repopick -t O_asb_2021-12 || exit 1
+        echo
     fi
     if [ "${rev}" == "16.0" ]; then
         echo
@@ -142,6 +143,7 @@ function pick_unmerged_commits {
         repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast external/tremolo 2>&1 || exit 1
         echo
         repopick -t P_asb_2021-12 || exit 1
+        echo
     fi
     if [ "${rev}" == "17.1" ]; then
         echo
@@ -153,8 +155,12 @@ function pick_unmerged_commits {
     fi
     if [ "${rev}" == "18.1" ]; then
         echo
-        #2021-12-05
-        repopick -t R_asb_2021-12 || exit 1
+        #2022-01-05
+        repopick -f 321239 2>&1 || exit 1
+        cp android/default.xml .repo/manifests/ || exit 1
+        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast external/libavc external/libexif 2>&1 || exit 1
+        echo
+        repopick -t R_asb_2022-01 || exit 1
         echo
         #soong: java: Specify larger heap size for metalava
 #        repopick -f 289926 2>&1 || exit 1
