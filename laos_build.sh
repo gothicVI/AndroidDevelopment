@@ -185,6 +185,11 @@ function sync_repository {
     while true; do
         if [ "${rev}" == "16.0" ] && [ "${dev}" == "potter" ]; then
             rm -rfv ./device/motorola
+            export LC_ALL=C
+            source build/envsetup.sh
+            echo
+            repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast device/motorola/potter 2>&1 || exit 1
+            echo
             yn="y"
         else
             read -p "Do you wish to sync the repository? Type Y/y, D/d for device specific only, or N/n and hit return: " yn
@@ -234,6 +239,12 @@ function sync_repository {
             [Nn]* ) break;;
         esac
     done
+    if [ "${rev}" == "14.1" ] && [ "${dev}" == "thea" ]; then
+        export LC_ALL=C
+        source build/envsetup.sh
+        echo
+        repopick -f 304626 2>&1 || exit 1
+    fi
     return 0
 }
 

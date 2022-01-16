@@ -2,7 +2,8 @@
 <manifest>
   <!-- potter device, kernel, vendor -->
   <project name="boype/android_device_motorola_potter" path="device/motorola/potter" remote="github" revision="cm-14.1"/>
-  <project name="boype/android_kernel_motorola_potter" path="kernel/motorola/msm8953" remote="github" revision="cm-14.1"/>
+  <!--<project name="boype/android_kernel_motorola_potter" path="kernel/motorola/msm8953" remote="github" revision="cm-14.1"/>-->
+  <project name="gothicVI/android_kernel_motorola_potter" path="kernel/motorola/msm8953" remote="github" revision="cm-14.1"/>
   <project name="boype/android_vendor_motorola_potter" path="vendor/motorola/potter" remote="github" revision="cm-14.1"/>
   <!-- Other needed projects -->
   <project name="LineageOS/android_external_bson" path="external/bson" remote="github" revision="cm-14.1"/>

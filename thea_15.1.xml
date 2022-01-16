@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
   <!-- thea device, kernel, vendor -->
-  <project name="gothicVI/android_device_motorola_msm8226-common" path="device/motorola/msm8226-common" remote="github" revision="lineage-15.1"/>
-  <project name="gothicVI/android_device_motorola_thea" path="device/motorola/thea" remote="github" revision="lineage-15.1"/>
   <!-- <project name="motog2014devteam/android_device_motorola_msm8226-common" path="device/motorola/msm8226-common" remote="github" revision="lineage-15.1"/>
   <project name="motog2014devteam/android_device_motorola_thea" path="device/motorola/thea" remote="github" revision="lineage-15.1"/> -->
-
-  <project name="gothicVI/android_kernel_motorola_msm8226" path="kernel/motorola/msm8226" remote="github" revision="lineage-15.1"/>
+  <project name="gothicVI/android_device_motorola_msm8226-common" path="device/motorola/msm8226-common" remote="github" revision="lineage-15.1"/>
+  <project name="gothicVI/android_device_motorola_thea" path="device/motorola/thea" remote="github" revision="lineage-15.1"/>
   <!-- <project name="motog2014devteam/android_kernel_motorola_msm8226" path="kernel/motorola/msm8226" remote="github" revision="lineage-15.1"/> -->
-
+  <project name="gothicVI/android_kernel_motorola_msm8226" path="kernel/motorola/msm8226" remote="github" revision="lineage-15.1"/>
   <project name="TheMuppets/proprietary_vendor_motorola" path="vendor/motorola" remote="github" revision="lineage-15.1"/>
 </manifest>
