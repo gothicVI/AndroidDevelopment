@@ -3,10 +3,10 @@
   <!-- potter device, kernel, vendor -->
   <project name="eduardobastier93/device_motorola_potter" path="device/motorola/potter" remote="github" revision="lineage-17.0"/>
   <project name="eduardobastier93/packages_resources_MotoActions" path="device/motorola/potter/MotoActions" remote="github" revision="10.0"/>
-  <!-- <project name="ZJRDroid/device_motorola_potter" path="device/motorola/potter" remote="github" revision="lineage-17.0"/>
-  <project name="ZJRDroid/packages_resources_MotoActions" path="device/motorola/potter/MotoActions" remote="github" revision="lineage-17.0"/> -->
+  <!--<project name="ZJRDroid/device_motorola_potter" path="device/motorola/potter" remote="github" revision="lineage-17.0"/>
+  <project name="ZJRDroid/packages_resources_MotoActions" path="device/motorola/potter/MotoActions" remote="github" revision="lineage-17.0"/>-->
   <project name="eduardobastier93/kernel_motorola_potter" path="kernel/motorola/potter" remote="github" revision="10.0"/>
-  <!-- <project name="ZJRDroid/kernel_motorola_potter" path="kernel/motorola/potter" remote="github" revision="10.0"/> -->
+  <!--<project name="ZJRDroid/kernel_motorola_potter" path="kernel/motorola/potter" remote="github" revision="10.0"/>-->
   <project name="eduardobastier93/vendor_motorola_potter" path="vendor/motorola/potter" remote="github" revision="10.0"/>
-  <!-- <project name="ZJRDroid/vendor_motorola_potter" path="vendor/motorola/potter" remote="github" revision="ten"/> -->
+  <!--<project name="ZJRDroid/vendor_motorola_potter" path="vendor/motorola/potter" remote="github" revision="ten"/>-->
 </manifest>
