@@ -82,51 +82,24 @@ function pick_unmerged_commits {
     if [ "${rev}" == "14.1" ]; then
         echo
         #2021-07-05
-        #2021-08-05
-        #2021-09-05
-        #2021-10-05
-        #2021-11-05
-        #2021-12-05
-        #2022-01-05
-        #tzdb2021c_N
         repopick -t n-asb-2021-07 || exit 1
-        echo
-        local_security_patch_level || exit 1
-        echo
-        read -s
+        #2021-08-05
         repopick -t n-asb-2021-08 || exit 1
-        echo
-        local_security_patch_level || exit 1
-        echo
-        read -s
+        #2021-09-05
         repopick -t n-asb-2021-09 || exit 1
-        echo
-        local_security_patch_level || exit 1
-        echo
-        read -s
+        #2021-10-05
         repopick -t n-asb-2021-10 || exit 1
-        echo
-        local_security_patch_level || exit 1
-        echo
-        read -s
+        #2021-11-05
         repopick -t n-asb-2021-11 || exit 1
-        echo
-        local_security_patch_level || exit 1
-        echo
-        read -s
+        #2021-12-05
         repopick -t n-asb-2021-12 || exit 1
-        echo
-        local_security_patch_level || exit 1
-        echo
-        read -s
+        #2022-01-05
         repopick -t n-asb-2022-01 || exit 1
-        echo
-        local_security_patch_level || exit 1
-        echo
-        read -s
+        #2022-02-05
+        repopick -t n-asb-2022-02 || exit 1
+        #tzdb2021c_N
         repopick -t tzdb2021c_N || exit 1
         echo
-        read -s
     fi
     if [ "${rev}" == "15.1" ]; then
         echo
