@@ -101,17 +101,10 @@ function pick_unmerged_commits {
         repopick -t tzdb2021c_N || exit 1
         echo
     fi
-    if [ "${rev}" == "15.1" ]; then
-        echo
-        #2021-11-05 were never merged
-        #2021-12-05
-        repopick -t O_asb_2021-12 || exit 1
-        echo
-    fi
     if [ "${rev}" == "16.0" ]; then
         echo
-        #2022-01-05
-        repopick -t P_asb_2022-01 || exit 1
+        #2022-02-05
+        repopick -t P_asb_2022-02 || exit 1
         echo
     fi
     if [ "${rev}" == "17.1" ]; then
