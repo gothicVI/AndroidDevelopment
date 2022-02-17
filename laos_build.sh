@@ -81,6 +81,8 @@ function pick_unmerged_commits {
     echo "Picking unmerged commits"
     if [ "${rev}" == "14.1" ]; then
         echo
+        # Fix python no longer pointing to python2
+        repopick -f 324000 324001 || exit 1
         #2021-07-05
         repopick -t n-asb-2021-07 || exit 1
         #2021-08-05
