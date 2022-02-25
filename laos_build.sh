@@ -105,6 +105,8 @@ function pick_unmerged_commits {
     fi
     if [ "${rev}" == "16.0" ]; then
         echo
+        # Fix python no longer pointing to python2
+        repopick -f 325288 || exit 1
         #2022-02-05
         repopick -t P_asb_2022-02 || exit 1
         echo
@@ -152,6 +154,7 @@ function reverse_switch_tree {
 function sync_repository {
     while true; do
         if [ "${rev}" == "16.0" ] && [ "${dev}" == "potter" ]; then
+            reverse_switch_tree && cd - || exit 1
             rm -rfv ./device/motorola
             export LC_ALL=C
             source build/envsetup.sh
