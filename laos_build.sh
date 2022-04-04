@@ -99,6 +99,8 @@ function pick_unmerged_commits {
         repopick -t n-asb-2022-01 || exit 1
         #2022-02-05
         repopick -t n-asb-2022-02 || exit 1
+        #2022-03-05
+        repopick -t n-asb-2022-03 || exit 1
         #tzdb2021c_N
         repopick -t tzdb2021c_N || exit 1
         echo
@@ -106,31 +108,25 @@ function pick_unmerged_commits {
     if [ "${rev}" == "16.0" ]; then
         echo
         # Fix python no longer pointing to python2
-        repopick -f 325288 || exit 1
-        #2022-02-05
-        repopick -t P_asb_2022-02 || exit 1
+        repopick -f 325288 325892 325893 325901 || exit 1
+        #2022-03-05
+        repopick -t P_asb_2022-03 || exit 1
         echo
     fi
     if [ "${rev}" == "17.1" ]; then
         echo
-        #2022-02-05
-        repopick -t Q_asb_2022-02 || exit 1
+        #2022-03-05
+        repopick -t Q_asb_2022-03 || exit 1
         echo
     fi
     if [ "${rev}" == "18.1" ]; then
         echo
-        #2022-02-05
+        #2022-03-05
         #repopick -f 321239 2>&1 || exit 1
         #cp android/default.xml .repo/manifests/ || exit 1
         #repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast external/libavc external/libexif 2>&1 || exit 1
         #echo
-        repopick -t R_asb_2022-02 || exit 1
-        echo
-    fi
-    if [ "${rev}" == "19.0" ]; then
-        echo
-        #2022-02-05
-        repopick -t S_asb_2022-02 || exit 1
+        repopick -t R_asb_2022-03 || exit 1
         echo
     fi
     return 0

@@ -63,4 +63,5 @@ SSL error when connecting to the Jack server. Try 'jack-diagnose'
 
 which can be solved by removing `TLSv1, TLSv1.1` from `jdk.tls.disabledAlgorithms` in `/etc/java-8-openjdk/security/java.security`.
 
-For `cm-14.1` the build might fail with a `python` import error which can be solved by explicitly setting the python version in the files `external/nanopb-c/generator/protoc-gen-nanopb` and `external/nanopb-c/generator/protoc-gen-nanopb.bat`, i.e., changing `python` to `python2`.
+For `cm-14.1` and `lineage-16.0` the build might fail with a `python` import error which can be solved by explicitly setting the python version in the files `external/nanopb-c/generator/protoc-gen-nanopb` and `external/nanopb-c/generator/protoc-gen-nanopb.bat`, i.e., changing `python` to `python2`.  
+For `lineage-16.0` the build might fail with a `python` SyntaxError which can be solved by explicitly setting the python version in the file `external/clang/clang-version-inc.py`, i.e., changing `python` to `python2`.
