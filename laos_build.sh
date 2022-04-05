@@ -115,18 +115,18 @@ function pick_unmerged_commits {
     fi
     if [ "${rev}" == "17.1" ]; then
         echo
-        #2022-03-05
-        repopick -t Q_asb_2022-03 || exit 1
+        #2022-04-05
+        repopick -t Q_asb_2022-04 || exit 1
         echo
     fi
     if [ "${rev}" == "18.1" ]; then
         echo
-        #2022-03-05
+        #2022-04-05
         #repopick -f 321239 2>&1 || exit 1
         #cp android/default.xml .repo/manifests/ || exit 1
         #repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast external/libavc external/libexif 2>&1 || exit 1
         #echo
-        repopick -t R_asb_2022-03 || exit 1
+        repopick -t R_asb_2022-04 || exit 1
         echo
     fi
     return 0
