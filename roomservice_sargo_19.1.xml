@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <!-- sargo device, kernel, vendor -->
+  <project name="LineageOS/android_device_google_sargo" path="device/google/sargo" remote="github" />
+  <project name="LineageOS/android_device_google_bonito" path="device/google/bonito" remote="github" />
+  <project name="LineageOS/android_kernel_google_msm-4.9" path="kernel/google/msm-4.9" remote="github" />
+  <!-- Other needed projects -->
+  <project name="LineageOS/android_packages_apps_ElmyraService" path="packages/apps/ElmyraService" remote="github" />
+</manifest>

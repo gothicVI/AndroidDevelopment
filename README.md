@@ -13,6 +13,7 @@ repo init -u https://github.com/LineageOS/android.git -b lineage-17.0
 repo init -u https://github.com/LineageOS/android.git -b lineage-17.1
 repo init -u https://github.com/LineageOS/android.git -b lineage-18.1
 repo init -u https://github.com/LineageOS/android.git -b lineage-19.0
+repo init -u https://github.com/LineageOS/android.git -b lineage-19.1
 ```
 
 To add the repositories for the devices potter, sargo, and thea place (or symlink) the respective files into
@@ -32,6 +33,8 @@ To add the repositories for the devices potter, sargo, and thea place (or symlin
                 `mv roomservice_sargo_18.1.xml roomservice.xml`
 * lineage-19.0: `roomservice_sargo_19.0.xml`, `sargo_19.0.xml`  
                 `mv roomservice_sargo_19.0.xml roomservice.xml`
+* lineage-19.1: `roomservice_sargo_19.1.xml`, `sargo_19.1.xml`  
+                `mv roomservice_sargo_19.1.xml roomservice.xml`
 
 Then to sync up:
 
