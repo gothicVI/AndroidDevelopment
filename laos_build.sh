@@ -103,6 +103,8 @@ function pick_unmerged_commits {
         repopick -t n-asb-2022-03 || exit 1
         #2022-04-05
         repopick -t n-asb-2022-04 || exit 1
+        #2022-05-05
+        repopick -t n-asb-2022-05 || exit 1
         #tzdb2021c_N
         repopick -t tzdb2021c_N || exit 1
         echo
