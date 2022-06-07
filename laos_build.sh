@@ -105,6 +105,8 @@ function pick_unmerged_commits {
         repopick -t n-asb-2022-04 || exit 1
         #2022-05-05
         repopick -t n-asb-2022-05 || exit 1
+        #2022-06-05
+        repopick -t n-asb-2022-06 || exit 1
         #tzdb2021c_N
         repopick -t tzdb2021c_N || exit 1
         echo
@@ -119,20 +121,22 @@ function pick_unmerged_commits {
     fi
     if [ "${rev}" == "17.1" ]; then
         echo
-        #2022-05-05
-        repopick -t Q_asb_2022-05 || exit 1
+        #2022-06-05
+        repopick -t Q_asb_2022-06 || exit 1
         echo
     fi
     if [ "${rev}" == "18.1" ]; then
         echo
-        #2022-05-05
-        repopick -t R_asb_2022-05 || exit 1
+        #2022-06-05
+        repopick -Q "topic:R_asb_2022-06+NOT+332370" || exit 1
+        #repopick -t R_asb_2022-06 || exit 1
         echo
     fi
     if [ "${rev}" == "19.1" ]; then
         echo
-        #2022-05-05
-        repopick -t S_asb_2022-05 || exit 1
+        #2022-05-06
+        repopick -Q "topic:S_asb_2022-06+NOT+332296"
+        #repopick -t S_asb_2022-06 || exit 1
         echo
     fi
     return 0
