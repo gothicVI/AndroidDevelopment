@@ -1,11 +1,12 @@
 #!/bin/bash
 
 set -e
+#set -Eeuxo pipefail
 
 rev=$1
-dev=$2
+dev=${2-""}
 myrepo=""
-if [[ "$3" =~ ^[0-9]+$ ]]; then
+if [[ "${3-""}" =~ ^[0-9]+$ ]]; then
     # $3 is an integer
     thr=$3
     if [ "${rev}" == "16.0" ] && [ "${dev}" == "potter" ]; then
@@ -63,7 +64,7 @@ function compare_security_patch_level {
 
 function clean_repository {
     while true; do
-        read -p "Do you wish to clean the repository? Type A/a for agressive or Y/y for normal or N/n and hit return: " ayn
+        read -rp "Do you wish to clean the repository? Type A/a for agressive or Y/y for normal or N/n and hit return: " ayn
         case $ayn in
             [Aa]* ) echo;
                     repo forall -j 1 -c git gc --aggressive --prune=now && repo forall -j 1 -c git repack -Ad && repo forall -j 1 -c git prune;
@@ -107,6 +108,8 @@ function pick_unmerged_commits {
         repopick -t n-asb-2022-05 || exit 1
         #2022-06-05
         repopick -t n-asb-2022-06 || exit 1
+        #2022-07-05
+        repopick -t n-asb-2022-07 || exit 1
         #tzdb2021c_N
         repopick -t tzdb2021c_N || exit 1
         echo
@@ -123,22 +126,22 @@ function pick_unmerged_commits {
     fi
     if [ "${rev}" == "17.1" ]; then
         echo
-        #2022-06-05
-        repopick -t Q_asb_2022-06 || exit 1
+        #2022-07-05
+        repopick -t Q_asb_2022-07 || exit 1
         echo
     fi
     if [ "${rev}" == "18.1" ]; then
         echo
-        #2022-06-05
-        repopick -Q "topic:R_asb_2022-06+NOT+332370" || exit 1
-        #repopick -t R_asb_2022-06 || exit 1
+        #2022-07-05
+        #repopick -Q "topic:R_asb_2022-06+NOT+332370" || exit 1
+        repopick -t R_asb_2022-07 || exit 1
         echo
     fi
     if [ "${rev}" == "19.1" ]; then
         echo
-        #2022-05-06
-        repopick -Q "topic:S_asb_2022-06+NOT+332296"
-        #repopick -t S_asb_2022-06 || exit 1
+        #2022-07-05
+        #repopick -Q "topic:S_asb_2022-06+NOT+332296"
+        repopick -t S_asb_2022-07 || exit 1
         echo
     fi
     return 0
@@ -165,13 +168,14 @@ function sync_repository {
             reverse_switch_tree && cd - || exit 1
             rm -rfv ./device/motorola
             export LC_ALL=C
+            # shellcheck source=/dev/null
             source build/envsetup.sh
             echo
             repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast device/motorola/potter 2>&1 || exit 1
             echo
             yn="y"
         else
-            read -p "Do you wish to sync the repository? Type Y/y, D/d for device specific only, or N/n and hit return: " yn
+            read -rp "Do you wish to sync the repository? Type Y/y, D/d for device specific only, or N/n and hit return: " yn
         fi
         case $yn in
             [Yy]* ) echo
@@ -186,6 +190,7 @@ function sync_repository {
                     clean_repository || exit 1
                     echo
                     export LC_ALL=C
+                    # shellcheck source=/dev/null
                     source build/envsetup.sh
                     echo
                     pick_unmerged_commits || exit 1
@@ -209,6 +214,7 @@ function sync_repository {
                     clean_repository || exit 1
                     echo
                     export LC_ALL=C
+                    # shellcheck source=/dev/null
                     source build/envsetup.sh
                     echo
                     pick_unmerged_commits || exit 1
@@ -220,6 +226,7 @@ function sync_repository {
     done
     if [ "${rev}" == "14.1" ] && [ "${dev}" == "thea" ]; then
         export LC_ALL=C
+        # shellcheck source=/dev/null
         source build/envsetup.sh
         echo
         repopick -f 304626 2>&1 || exit 1
@@ -229,6 +236,7 @@ function sync_repository {
 
 function build {
     export LC_ALL=C
+    # shellcheck source=/dev/null
     source build/envsetup.sh || exit 1
     breakfast "${dev}" || exit 1
     croot
@@ -247,7 +255,7 @@ function cleanup {
     securitypatchdate="$(grep "PLATFORM_SECURITY_PATCH := " "${HOME}/android/laos_${rev}/build/core/version_defaults.mk" | awk '{print $NF}')"
     output="$(ls "lineage-${rev}-"*"-UNOFFICIAL-${dev}.zip")"
     # Remove the '.zip' ending
-    outputname="$(basename ${output} .zip)"
+    outputname="$(basename "${output}" .zip)"
     outputtag=""
 #    if [ "${rev}" == "17.1" ]; then
 #        outputtag="TEST-"
@@ -265,13 +273,13 @@ function cleanup {
     pkill java
     echo
     while true; do
-        read -p "Do you wish to clean the out-directory? Type Y/y for yes, D/d for device specific only, or N/n for no and hit return: " yn
+        read -rp "Do you wish to clean the out-directory? Type Y/y for yes, D/d for device specific only, or N/n for no and hit return: " yn
         case $yn in
             [Yy]* ) echo
                     cd "${HOME}/android/laos_${rev}"
                     rm -rfv ./out
                     while true; do
-                        read -p "Do you wish to clean the prebuilts-directory? Type Y/y for yes or N/n for no and hit return: " yn
+                        read -rp "Do you wish to clean the prebuilts-directory? Type Y/y for yes or N/n for no and hit return: " yn
                         case $yn in
                             [Yy]* ) echo
                                     rm -rfv ./prebuilts
@@ -282,7 +290,7 @@ function cleanup {
                     break;;
             [Dd]* ) echo
                     cd "${HOME}/android/laos_${rev}/out"
-                    rm -rfv $(find . -iname "*${dev}*")
+                    rm -rfv "$(find . -iname "*${dev}*")"
                     break;;
             [Nn]* ) break;;
         esac
@@ -309,16 +317,16 @@ echo
 sync_repository || exit 1
 echo
 while true; do
-    read -p "Do you wish to build clean? Type Y/y, D/d for device specific only, or N/n, or A/a to abort and hit return: " yna
+    read -rp "Do you wish to build clean? Type Y/y, D/d for device specific only, or N/n, or A/a to abort and hit return: " yna
     case $yna in
         [Yy]* ) echo
                 rm -rfv ./out
                 break;;
-        [Dd]* ) rm -rfv $(find ./out/ -iname "*${dev}*")
+        [Dd]* ) rm -rfv "$(find ./out/ -iname "*${dev}*")"
                 break;;
         [Nn]* ) break;;
         [Aa]* ) while true; do
-                    read -p "Do you wish to clean the prebuilts-directory? Type Y/y for yes or N/n for no and hit return: " yn
+                    read -rp "Do you wish to clean the prebuilts-directory? Type Y/y for yes or N/n for no and hit return: " yn
                     case $yn in
                         [Yy]* ) echo
                                 rm -rfv ./prebuilts
@@ -338,7 +346,7 @@ build || exit 1
 echo
 echo "Press ENTER to continue..."
 echo
-read -s
+read -rs
 clear
 echo
 echo "Cleanup..."
