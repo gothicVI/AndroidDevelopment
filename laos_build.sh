@@ -290,7 +290,8 @@ function cleanup {
                     break;;
             [Dd]* ) echo
                     cd "${HOME}/android/laos_${rev}/out"
-                    rm -rfv "$(find . -iname "*${dev}*")"
+                    # shellcheck disable=SC2046
+                    rm -rfv $(find . -iname "*${dev}*")
                     break;;
             [Nn]* ) break;;
         esac
@@ -322,7 +323,8 @@ while true; do
         [Yy]* ) echo
                 rm -rfv ./out
                 break;;
-        [Dd]* ) rm -rfv "$(find ./out/ -iname "*${dev}*")"
+        [Dd]* ) # shellcheck disable=SC2046
+                rm -rfv $(find ./out/ -iname "*${dev}*")
                 break;;
         [Nn]* ) break;;
         [Aa]* ) while true; do
