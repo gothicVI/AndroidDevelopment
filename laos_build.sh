@@ -165,7 +165,8 @@ function reverse_switch_tree {
 function sync_repository {
     while true; do
         if [ "${rev}" == "16.0" ] && [ "${dev}" == "potter" ]; then
-            reverse_switch_tree && cd - || exit 1
+            reverse_switch_tree || exit 1
+            cd - > /dev/null || exit 1
             rm -rfv ./device/motorola
             export LC_ALL=C
             # shellcheck source=/dev/null
@@ -290,6 +291,7 @@ function cleanup {
                     break;;
             [Dd]* ) echo
                     cd "${HOME}/android/laos_${rev}/out"
+                    rm -rfv "./target/product/${dev}"
                     # shellcheck disable=SC2046
                     rm -rfv $(find . -iname "*${dev}*")
                     break;;
