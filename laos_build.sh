@@ -162,6 +162,28 @@ function reverse_switch_tree {
     return 0
 }
 
+function revert_version_defaults {
+    cd build/core || exit 1
+    git restore version_defaults.mk || exit 1
+    cd - > /dev/null || exit 1
+    return 0
+}
+
+function edit_security_patch_date {
+    echo
+    while true; do
+        read -rp "Do you wish to edit the security patch date? Type Y/y or N/n and hit return: " yn
+        case $yn in
+            [Yy]* ) echo
+                    vim build/core/version_defaults.mk || exit 1
+                    local_security_patch_level || exit 1
+                    break;;
+            [Nn]* ) break;;
+        esac
+    done
+    return 0
+}
+
 function sync_repository {
     while true; do
         if [ "${rev}" == "16.0" ] && [ "${dev}" == "potter" ]; then
@@ -184,6 +206,7 @@ function sync_repository {
                         switch_tree || exit 1
                     fi
                     echo
+                    revert_version_defaults || exit 1
                     repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 || exit 1
                     echo
                     local_security_patch_level || exit 1
@@ -208,6 +231,7 @@ function sync_repository {
                         switch_tree || exit 1
                     fi
                     echo
+                    revert_version_defaults || exit 1
                     repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 || exit 1
                     echo
                     local_security_patch_level || exit 1
@@ -232,6 +256,7 @@ function sync_repository {
         echo
         repopick -f 304626 2>&1 || exit 1
     fi
+    edit_security_patch_date || exit 1
     return 0
 }
 
