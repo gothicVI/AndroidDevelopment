@@ -302,23 +302,23 @@ function cleanup {
         read -rp "Do you wish to clean the out-directory? Type Y/y for yes, D/d for device specific only, or N/n for no and hit return: " yn
         case $yn in
             [Yy]* ) echo
-                    cd "${HOME}/android/laos_${rev}"
-                    rm -rfv ./out
+                    cd "${HOME}/android/laos_${rev}" || exit 1
+                    rm -rfv ./out || exit 1
                     while true; do
                         read -rp "Do you wish to clean the prebuilts-directory? Type Y/y for yes or N/n for no and hit return: " yn
                         case $yn in
                             [Yy]* ) echo
-                                    rm -rfv ./prebuilts
+                                    rm -rfv ./prebuilts || exit 1
                                     break;;
                             [Nn]* ) break;;
                         esac
                     done
                     break;;
             [Dd]* ) echo
-                    cd "${HOME}/android/laos_${rev}/out"
-                    rm -rfv "./target/product/${dev}"
+                    cd "${HOME}/android/laos_${rev}/out" || exit 1
+                    rm -rfv "./target/product/${dev}" || exit 1
                     # shellcheck disable=SC2046
-                    rm -rfv $(find . -iname "*${dev}*")
+                    rm -rfv $(find . -iname "*${dev}*") || exit 1
                     break;;
             [Nn]* ) break;;
         esac
@@ -348,17 +348,17 @@ while true; do
     read -rp "Do you wish to build clean? Type Y/y, D/d for device specific only, or N/n, or A/a to abort and hit return: " yna
     case $yna in
         [Yy]* ) echo
-                rm -rfv ./out
+                rm -rfv ./out || exit 1
                 break;;
         [Dd]* ) # shellcheck disable=SC2046
-                rm -rfv $(find ./out/ -iname "*${dev}*")
+                rm -rfv $(find ./out/ -iname "*${dev}*") || exit 1
                 break;;
         [Nn]* ) break;;
         [Aa]* ) while true; do
                     read -rp "Do you wish to clean the prebuilts-directory? Type Y/y for yes or N/n for no and hit return: " yn
                     case $yn in
                         [Yy]* ) echo
-                                rm -rfv ./prebuilts
+                                rm -rfv ./prebuilts || exit 1
                                 break;;
                         [Nn]* ) break;;
                     esac
