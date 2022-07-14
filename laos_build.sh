@@ -350,7 +350,8 @@ while true; do
         [Yy]* ) echo
                 rm -rfv ./out || exit 1
                 break;;
-        [Dd]* ) # shellcheck disable=SC2046
+        [Dd]* ) rm -rfv "./out/target/product/${dev}" || exit 1
+                # shellcheck disable=SC2046
                 rm -rfv $(find ./out/ -iname "*${dev}*") || exit 1
                 break;;
         [Nn]* ) break;;
