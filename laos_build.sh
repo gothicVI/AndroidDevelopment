@@ -249,14 +249,15 @@ function sync_repository {
             [Nn]* ) break;;
         esac
     done
+    edit_security_patch_date || exit 1
     if [ "${rev}" == "14.1" ] && [ "${dev}" == "thea" ]; then
+        echo
         export LC_ALL=C
         # shellcheck source=/dev/null
         source build/envsetup.sh
         echo
         repopick -f 304626 2>&1 || exit 1
     fi
-    edit_security_patch_date || exit 1
     return 0
 }
 
