@@ -122,6 +122,8 @@ function pick_unmerged_commits {
         repopick -t P_asb_2022-05 || exit 1
         #2022-06-05
         repopick -t P_asb_2022-06 || exit 1
+        #2022-07-05
+        repopick -t P_asb_2022-07 || exit 1
         echo
     fi
     if [ "${rev}" == "17.1" ]; then
