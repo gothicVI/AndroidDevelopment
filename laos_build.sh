@@ -146,9 +146,9 @@ function pick_unmerged_commits {
     fi
     if [ "${rev}" == "19.1" ]; then
         echo
-        #2022-07-05
+        #2022-08-05
         #repopick -Q "topic:S_asb_2022-06+NOT+332296"
-        repopick -t S_asb_2022-07 || exit 1
+        repopick -t S_asb_2022-08 || exit 1
         echo
     fi
     return 0
