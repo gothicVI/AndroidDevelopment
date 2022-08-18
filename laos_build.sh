@@ -191,6 +191,13 @@ function edit_security_patch_date {
     return 0
 }
 
+function revert_default {
+    cd ./.repo/manifests || exit 1
+    git restore default.xml || exit 1
+    cd - > /dev/null || exit 1
+    return 0
+}
+
 function sync_repository {
     while true; do
         if [ "${rev}" == "16.0" ] && [ "${dev}" == "potter" ]; then
@@ -209,6 +216,7 @@ function sync_repository {
         fi
         case $yn in
             [Yy]* ) echo
+                    revert_default || exit 1
                     if [ "${myrepo}" != "" ]; then
                         switch_tree || exit 1
                     fi
@@ -229,6 +237,7 @@ function sync_repository {
                     local_security_patch_level || exit 1
                     break;;
             [Dd]* ) echo
+                    revert_default || exit 1
                     if [ "${dev}" == "potter" ] || [ "${dev}" == "thea" ]; then
                         rm -rfv ./device/motorola ./kernel/motorola ./vendor/motorola
                     elif [ "${dev}" == "sargo" ]; then
