@@ -159,6 +159,12 @@ function pick_unmerged_commits {
         repopick -t S_asb_2022-09 || exit 1
         echo
     fi
+    if [ "${rev}" == "20.0" ]; then
+        echo
+        #2022-09-05
+        repopick -t T_asb_2022-09 || exit 1
+        echo
+    fi
     return 0
 }
 
@@ -178,9 +184,11 @@ function reverse_switch_tree {
 }
 
 function revert_version_defaults {
-    cd build/core || exit 1
-    git restore version_defaults.mk || exit 1
-    cd - > /dev/null || exit 1
+    if [ -d build/core ]; then
+        cd build/core || exit 1
+        git restore version_defaults.mk || exit 1
+        cd - > /dev/null || exit 1
+    fi
     return 0
 }
 

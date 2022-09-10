@@ -14,6 +14,7 @@ repo init -u https://github.com/LineageOS/android.git -b lineage-17.1
 repo init -u https://github.com/LineageOS/android.git -b lineage-18.1
 repo init -u https://github.com/LineageOS/android.git -b lineage-19.0
 repo init -u https://github.com/LineageOS/android.git -b lineage-19.1
+repo init -u https://github.com/LineageOS/android.git -b lineage-20.0
 ```
 
 To add the repositories for the devices potter, sargo, and thea place (or symlink) the respective files into
