@@ -113,6 +113,9 @@ function pick_unmerged_commits {
         #2022-08-05
         repopick -t n-asb-2022-08 || exit 1
         #2022-09-05
+        repopick -f 338382 || exit 1
+        cp -v ./android/default.xml ./.repo/manifests || exit 1
+        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast external/expat 2>&1 || exit 1
         repopick -t n-asb-2022-09 || exit 1
         #tzdb2021c_N
         repopick -t tzdb2021c_N || exit 1
