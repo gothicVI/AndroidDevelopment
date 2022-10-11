@@ -1,0 +1,11 @@
+[pylint]
+disable = C0302,  # too many lines
+          C0325,  # superfluous-parens
+          R0912,  # too-many-branches
+          R0913,  # too-many-arguments
+          R0914,  # too-many-locals
+          R0915,  # too-many-statements
+max-line-length = 120
+ignore = .git __pycache__
+j = 0
+reports = yes

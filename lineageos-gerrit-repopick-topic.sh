@@ -1,6 +1,6 @@
 #
 # Source it from your LineageOS build environment:
-# 
+#
 # . lineageos-gerrit-repopick-topic.sh
 #
 # then use it, for example:
