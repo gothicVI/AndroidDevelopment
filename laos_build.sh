@@ -119,43 +119,45 @@ function pick_unmerged_commits {
         repopick -t n-asb-2022-09 || exit 1
         #2022-10-05
         repopick -t n-asb-2022-10 || exit 1
+        #2022-11-05
+        repopick -t n-asb-2022-11 || exit 1
         #tzdb2021c_N
         repopick -t tzdb2021c_N || exit 1
         echo
     fi
     if [ "${rev}" == "17.1" ]; then
         echo
-        #2022-10-05
-        repopick -f 340998 || exit 1
-        cp -v ./android/default.xml ./.repo/manifests || exit 1
-        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast external/dtc 2>&1 || exit 1
-        repopick -t Q_asb_2022-10 || exit 1
+        #2022-11-05
+        #repopick -f 340998 || exit 1
+        #cp -v ./android/default.xml ./.repo/manifests || exit 1
+        #repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast external/dtc 2>&1 || exit 1
+        repopick -t Q_asb_2022-11 || exit 1
         echo
     fi
     if [ "${rev}" == "18.1" ]; then
         echo
-        #2022-10-05
+        #2022-11-05
         #repopick -Q "topic:R_asb_2022-06+NOT+332370" || exit 1
-        repopick -f 340871 || exit 1
-        cp -v ./android/default.xml ./.repo/manifests || exit 1
-        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast external/dtc 2>&1 || exit 1
-        repopick -t R_asb_2022-10 || exit 1
+        #repopick -f 340871 || exit 1
+        #cp -v ./android/default.xml ./.repo/manifests || exit 1
+        #repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast external/dtc 2>&1 || exit 1
+        repopick -t R_asb_2022-11 || exit 1
         echo
     fi
     if [ "${rev}" == "19.1" ]; then
         echo
-        #2022-10-05
+        #2022-11-05
         #repopick -Q "topic:S_asb_2022-06+NOT+332296"
-        repopick -f 340536 || exit 1
+        repopick -f 343907 || exit 1
         cp -v ./android/default.xml ./.repo/manifests || exit 1
-        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast external/dtc 2>&1 || exit 1
-        repopick -t S_asb_2022-10 || exit 1
+        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast hardware/nxp/nfc 2>&1 || exit 1
+        repopick -t S_asb_2022-11 || exit 1
         echo
     fi
     if [ "${rev}" == "20.0" ]; then
         echo
-        #2022-10-05
-        repopick -t T_asb_2022-10 || exit 1
+        #2022-11-05
+        repopick -t T_asb_2022-11 || exit 1
         echo
     fi
     return 0
