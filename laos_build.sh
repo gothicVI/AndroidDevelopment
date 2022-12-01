@@ -121,8 +121,8 @@ function pick_unmerged_commits {
         repopick -t n-asb-2022-10 || exit 1
         #2022-11-05
         repopick -t n-asb-2022-11 || exit 1
-        #tzdb2021c_N
-        repopick -t tzdb2021c_N || exit 1
+        #tzdb_N
+        repopick -t tzdb_N || exit 1
         echo
     fi
     if [ "${rev}" == "17.1" ]; then
