@@ -36,6 +36,8 @@ To add the repositories for the devices potter, sargo, and thea place (or symlin
                 `mv roomservice_sargo_19.0.xml roomservice.xml`
 * lineage-19.1: `roomservice_sargo_19.1.xml`, `sargo_19.1.xml`<br>
                 `mv roomservice_sargo_19.1.xml roomservice.xml`
+* lineage-20.0: `roomservice_sargo_20.0.xml`, `sargo_20.0.xml`<br>
+                `mv roomservice_sargo_20.0.xml roomservice.xml`
 
 Then to sync up:
 
