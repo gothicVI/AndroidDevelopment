@@ -123,43 +123,50 @@ function pick_unmerged_commits {
         repopick -t n-asb-2022-11 || exit 1
         #2022-12-05
         repopick -t n-asb-2022-12 || exit 1
+        #2023-01-05
+        repopick -t n-asb-2023-01 || exit 1
         #tzdb2021c_N
         repopick -t tzdb2021c_N || exit 1
         echo
     fi
     if [ "${rev}" == "17.1" ]; then
         echo
-        #2022-12-05
+        #2023-01-05
         #repopick -f 340998 || exit 1
-        #cp -v ./android/default.xml ./.repo/manifests || exit 1
+        #cp -v ./android/default.xml ./.repo/manifests/ || exit 1
         #repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast external/dtc 2>&1 || exit 1
-        repopick -t Q_asb_2022-12 || exit 1
+        repopick -t Q_asb_2023-01 || exit 1
         echo
     fi
     if [ "${rev}" == "18.1" ]; then
         echo
-        #2022-12-05
+        #2023-01-05
         #repopick -Q "topic:R_asb_2022-06+NOT+332370" || exit 1
-        repopick -f 345428 || exit 1
-        cp -v ./android/default.xml ./.repo/manifests || exit 1
-        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast frameworks/minikin 2>&1 || exit 1
-        repopick -t R_asb_2022-12 || exit 1
+        #repopick -f 345428 || exit 1
+        #cp -v ./android/default.xml ./.repo/manifests/ || exit 1
+        #repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast frameworks/minikin 2>&1 || exit 1
+        repopick -t R_asb_2023-01 || exit 1
         echo
     fi
     if [ "${rev}" == "19.1" ]; then
         echo
-        #2022-12-05
+        #2023-01-05
         #repopick -Q "topic:S_asb_2022-06+NOT+332296"
-        repopick -f 345333 || exit 1
-        cp -v ./android/default.xml ./.repo/manifests || exit 1
-        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast frameworks/minikin 2>&1 || exit 1
-        repopick -t S_asb_2022-12 || exit 1
+        #repopick -f 345333 || exit 1
+        #cp -v ./android/default.xml ./.repo/manifests/ || exit 1
+        #repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast frameworks/minikin 2>&1 || exit 1
+        repopick -t S_asb_2023-01 || exit 1
         echo
     fi
     if [ "${rev}" == "20.0" ]; then
         echo
-        #2022-12-05
-        repopick -t T_asb_2022-12 || exit 1
+        #2023-01-05
+        repopick -f 346873 || exit 1
+        cp -v ./android/default.xml ./.repo/manifests/ || exit 1
+        cp -v ./android/snippets/lineage.xml ./.repo/manifests/snippets/ || exit 1
+        cp -v ./android/snippets/pixel.xml ./.repo/manifests/snippets/ || exit 1
+        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 || exit 1
+        repopick -t T_asb_2023-01 || exit 1
         echo
     fi
     return 0
@@ -207,6 +214,7 @@ function edit_security_patch_date {
 function revert_default {
     cd ./.repo/manifests || exit 1
     git restore default.xml || exit 1
+    git restore snippets || exit 1
     cd - > /dev/null || exit 1
     return 0
 }
