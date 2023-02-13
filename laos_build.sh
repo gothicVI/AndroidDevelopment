@@ -133,21 +133,21 @@ function pick_unmerged_commits {
     fi
     if [ "${rev}" == "17.1" ]; then
         echo
-        #2023-01-05
-        #repopick -f 340998 || exit 1
-        #cp -v ./android/default.xml ./.repo/manifests/ || exit 1
-        #repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast external/dtc 2>&1 || exit 1
-        repopick -t Q_asb_2023-01 || exit 1
+        #2023-02-05
+        repopick -f 348888 || exit 1
+        cp -v ./android/default.xml ./.repo/manifests/ || exit 1
+        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 || exit 1
+        repopick -t Q_asb_2023-02 || exit 1
         echo
     fi
     if [ "${rev}" == "18.1" ]; then
         echo
-        #2023-01-05
+        #2023-02-05
         #repopick -Q "topic:R_asb_2022-06+NOT+332370" || exit 1
-        #repopick -f 345428 || exit 1
-        #cp -v ./android/default.xml ./.repo/manifests/ || exit 1
-        #repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast frameworks/minikin 2>&1 || exit 1
-        repopick -t R_asb_2023-01 || exit 1
+        repopick -f 348872 || exit 1
+        cp -v ./android/default.xml ./.repo/manifests/ || exit 1
+        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 || exit 1
+        repopick -t R_asb_2023-02 || exit 1
         echo
     fi
     if [ "${rev}" == "19.1" ]; then
