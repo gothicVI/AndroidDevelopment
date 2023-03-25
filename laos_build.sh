@@ -85,50 +85,52 @@ function pick_unmerged_commits {
         # Fix python no longer pointing to python2
         repopick -f 324000 324001 324004 324007 324010 || exit 1
         #2021-07-05
-        repopick -t n-asb-2021-07 || exit 1
+        repopick -f -t n-asb-2021-07 || exit 1
         #2021-08-05
-        repopick -t n-asb-2021-08 || exit 1
+        repopick -f -t n-asb-2021-08 || exit 1
         #2021-09-05
-        repopick -t n-asb-2021-09 || exit 1
+        repopick -f -t n-asb-2021-09 || exit 1
         #2021-10-05
-        repopick -t n-asb-2021-10 || exit 1
+        repopick -f -t n-asb-2021-10 || exit 1
         #2021-11-05
-        repopick -t n-asb-2021-11 || exit 1
+        repopick -f -t n-asb-2021-11 || exit 1
         #2021-12-05
-        repopick -t n-asb-2021-12 || exit 1
+        repopick -f -t n-asb-2021-12 || exit 1
         #2022-01-05
-        repopick -t n-asb-2022-01 || exit 1
+        repopick -f -t n-asb-2022-01 || exit 1
         #2022-02-05
-        repopick -t n-asb-2022-02 || exit 1
+        repopick -f -t n-asb-2022-02 || exit 1
         #2022-03-05
-        repopick -t n-asb-2022-03 || exit 1
+        repopick -f -t n-asb-2022-03 || exit 1
         #2022-04-05
-        repopick -t n-asb-2022-04 || exit 1
+        repopick -f -t n-asb-2022-04 || exit 1
         #2022-05-05
-        repopick -t n-asb-2022-05 || exit 1
+        repopick -f -t n-asb-2022-05 || exit 1
         #2022-06-05
-        repopick -t n-asb-2022-06 || exit 1
+        repopick -f -t n-asb-2022-06 || exit 1
         #2022-07-05
-        repopick -t n-asb-2022-07 || exit 1
+        repopick -f -t n-asb-2022-07 || exit 1
         #2022-08-05
-        repopick -t n-asb-2022-08 || exit 1
+        repopick -f -t n-asb-2022-08 || exit 1
         #2022-09-05
         repopick -f 338382 || exit 1
         cp -v ./android/default.xml ./.repo/manifests || exit 1
         repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast external/expat 2>&1 || exit 1
-        repopick -t n-asb-2022-09 || exit 1
+        repopick -f -t n-asb-2022-09 || exit 1
         #2022-10-05
-        repopick -t n-asb-2022-10 || exit 1
+        repopick -f -t n-asb-2022-10 || exit 1
         #2022-11-05
-        repopick -t n-asb-2022-11 || exit 1
+        repopick -f -t n-asb-2022-11 || exit 1
         #2022-12-05
-        repopick -t n-asb-2022-12 || exit 1
+        repopick -f -t n-asb-2022-12 || exit 1
         #2023-01-05
-        repopick -t n-asb-2023-01 || exit 1
+        repopick -f -t n-asb-2023-01 || exit 1
         #2023-02-05
-        repopick -t n-asb-2023-02 || exit 1
+        repopick -f -t n-asb-2023-02 || exit 1
+        #2023-03-05
+        repopick -f -t n-asb-2023-03 || exit 1
         #tzdb2021c_N
-        repopick -t tzdb_N || exit 1
+        repopick -f -t tzdb_N || exit 1
         echo
     fi
     if [ "${rev}" == "17.1" ]; then
@@ -142,33 +144,31 @@ function pick_unmerged_commits {
     fi
     if [ "${rev}" == "18.1" ]; then
         echo
-        #2023-02-05
-        #repopick -Q "topic:R_asb_2022-06+NOT+332370" || exit 1
-        repopick -f 348872 || exit 1
+        #2023-03-05
+        repopick -f 351408 || exit 1
         cp -v ./android/default.xml ./.repo/manifests/ || exit 1
         repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 || exit 1
-        repopick -t R_asb_2023-02 || exit 1
+        repopick -t R_asb_2023-03 || exit 1
         echo
     fi
     if [ "${rev}" == "19.1" ]; then
         echo
-        #2023-02-05
-        #repopick -Q "topic:S_asb_2022-06+NOT+332296"
-        repopick -f 348826 || exit 1
+        #2023-03-05
+        repopick -f 351378 || exit 1
         cp -v ./android/default.xml ./.repo/manifests/ || exit 1
         repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 || exit 1
-        repopick -t S_asb_2023-02 || exit 1
+        repopick -t S_asb_2023-03 || exit 1
         echo
     fi
     if [ "${rev}" == "20.0" ]; then
         echo
-        #2023-02-05
-        repopick -f 348567 || exit 1
+        #2023-03-05
+        repopick -f 351108 || exit 1
         cp -v ./android/default.xml ./.repo/manifests/ || exit 1
         cp -v ./android/snippets/lineage.xml ./.repo/manifests/snippets/ || exit 1
         cp -v ./android/snippets/pixel.xml ./.repo/manifests/snippets/ || exit 1
         repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 || exit 1
-        repopick -t T_asb_2023-02 || exit 1
+        repopick -p -t T_asb_2023-03 || exit 1
         echo
     fi
     return 0
