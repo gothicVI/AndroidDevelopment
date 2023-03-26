@@ -6,15 +6,15 @@ Getting Started
 To initialize your local repository using the LineageOS trees, use one of the following commands:
 
 ```bash
-repo init -u https://github.com/LineageOS/android.git -b cm-14.1
-repo init -u https://github.com/LineageOS/android.git -b lineage-15.1
-repo init -u https://github.com/LineageOS/android.git -b lineage-16.0
-repo init -u https://github.com/LineageOS/android.git -b lineage-17.0
-repo init -u https://github.com/LineageOS/android.git -b lineage-17.1
-repo init -u https://github.com/LineageOS/android.git -b lineage-18.1
-repo init -u https://github.com/LineageOS/android.git -b lineage-19.0
-repo init -u https://github.com/LineageOS/android.git -b lineage-19.1
-repo init -u https://github.com/LineageOS/android.git -b lineage-20.0
+repo init -u https://github.com/LineageOS/android.git -b cm-14.1 --git-lfs
+repo init -u https://github.com/LineageOS/android.git -b lineage-15.1 --git-lfs
+repo init -u https://github.com/LineageOS/android.git -b lineage-16.0 --git-lfs
+repo init -u https://github.com/LineageOS/android.git -b lineage-17.0 --git-lfs
+repo init -u https://github.com/LineageOS/android.git -b lineage-17.1 --git-lfs
+repo init -u https://github.com/LineageOS/android.git -b lineage-18.1 --git-lfs
+repo init -u https://github.com/LineageOS/android.git -b lineage-19.0 --git-lfs
+repo init -u https://github.com/LineageOS/android.git -b lineage-19.1 --git-lfs
+repo init -u https://github.com/LineageOS/android.git -b lineage-20.0 --git-lfs
 ```
 
 To add the repositories for the devices potter, sargo, and thea place (or symlink) the respective files into
