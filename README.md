@@ -69,5 +69,8 @@ SSL error when connecting to the Jack server. Try 'jack-diagnose'
 
 which can be solved by removing `TLSv1, TLSv1.1` from `jdk.tls.disabledAlgorithms` in <br> `/etc/java-8-openjdk/security/java.security`.
 
-For `cm-14.1` and `lineage-16.0` the build might fail with a `python` import error which can be solved by explicitly setting the python version in the files <br> `external/nanopb-c/generator/protoc-gen-nanopb` and <br> `external/nanopb-c/generator/protoc-gen-nanopb.bat`, i.e., changing `python` to `python2`.<br>
-For `lineage-16.0` the build might fail with a `python` SyntaxError which can be solved by explicitly setting the python version in the file <br> `external/clang/clang-version-inc.py`, i.e., changing `python` to `python2`.
+For `cm-14.1` and `lineage-16.0` the build might fail with a `python` import error which can be solved by explicitly <br> setting the python version in the files `external/nanopb-c/generator/protoc-gen-nanopb` and <br> `external/nanopb-c/generator/protoc-gen-nanopb.bat`, i.e., changing `python` to `python2`.
+
+For `lineage-16.0` the build might fail with a `python` SyntaxError which can be solved by explicitly setting the <br> python version in the file `external/clang/clang-version-inc.py`, i.e., changing `python` to `python2`.
+
+For `lineage-17.1` the build might fail at the end when trying to build the file system ([reddit discussion](https://www.reddit.com/r/LineageOS/comments/122myh1/build_issues_for_200_191_and_181/)). <br> This is due to changes introduced to `/etc/mke2fs.conf` on the host system in commits <br> [fe341d59ee9696f66ec8cd1bf9615ee1a107824f](https://github.com/tytso/e2fsprogs/commit/fe341d59ee9696f66ec8cd1bf9615ee1a107824f) and [515268b0bd27987ba919f92d8e9aa2d3bb0f11bc](https://github.com/tytso/e2fsprogs/commit/515268b0bd27987ba919f92d8e9aa2d3bb0f11bc). <br> It can be solved by removing the `metadata_csum_seed` and `orphan_file` entries from `/etc/mke2fs.conf` <br> on the host system.
