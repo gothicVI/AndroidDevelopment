@@ -133,6 +133,8 @@ function pick_unmerged_commits {
         repopick -f -t n-asb-2023-04 || exit 1
         #2023-05-05
         repopick -f -t n-asb-2023-05 || exit 1
+        #2023-06-05
+        repopick -f -t n-asb-2023-06 || exit 1
         #tzdb2021c_N
         repopick -f -t tzdb_N || exit 1
         echo
@@ -152,31 +154,31 @@ function pick_unmerged_commits {
     fi
     if [ "${rev}" == "18.1" ]; then
         echo
-        #2023-05-05
+        #2023-06-05
         #repopick -f 351408 || exit 1
         #cp -v ./android/default.xml ./.repo/manifests/ || exit 1
         #repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 || exit 1
-        repopick -t R_asb_2023-05 || exit 1
+        repopick -t R_asb_2023-06 || exit 1
         echo
     fi
     if [ "${rev}" == "19.1" ]; then
         echo
-        #2023-05-05
-        #repopick -f 351378 || exit 1
-        #cp -v ./android/default.xml ./.repo/manifests/ || exit 1
-        #repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 || exit 1
-        repopick -t S_asb_2023-05 || exit 1
+        #2023-06-05
+        repopick -f 358275 || exit 1
+        cp -v ./android/default.xml ./.repo/manifests/ || exit 1
+        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 || exit 1
+        repopick -t S_asb_2023-06 || exit 1
         echo
     fi
     if [ "${rev}" == "20.0" ]; then
         echo
-        #2023-05-05
+        #2023-06-05
         #repopick -f 351108 || exit 1
         #cp -v ./android/default.xml ./.repo/manifests/ || exit 1
         #cp -v ./android/snippets/lineage.xml ./.repo/manifests/snippets/ || exit 1
         #cp -v ./android/snippets/pixel.xml ./.repo/manifests/snippets/ || exit 1
         #repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 || exit 1
-        repopick -p -t T_asb_2023-05 || exit 1
+        repopick -p -t T_asb_2023-06 || exit 1
         echo
     fi
     return 0
