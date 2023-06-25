@@ -144,12 +144,14 @@ function pick_unmerged_commits {
         #2023-03-05
         repopick -f 352333 || exit 1
         cp -v ./android/default.xml ./.repo/manifests/ || exit 1
-        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 || exit 1
+        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 external/zlib || exit 1
         repopick -t Q_asb_2023-03 || exit 1
         #2023-04-05
         repopick -t Q_asb_2023-04 || exit 1
         #2023-05-05
         repopick -t Q_asb_2023-05 || exit 1
+        #2023-06-05
+        repopick -t Q_asb_2023-06 || exit 1
         echo
     fi
     if [ "${rev}" == "18.1" ]; then
@@ -166,7 +168,7 @@ function pick_unmerged_commits {
         #2023-06-05
         repopick -f 358275 || exit 1
         cp -v ./android/default.xml ./.repo/manifests/ || exit 1
-        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 || exit 1
+        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 packages/apps/Traceur || exit 1
         repopick -t S_asb_2023-06 || exit 1
         echo
     fi
