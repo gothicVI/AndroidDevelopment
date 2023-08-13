@@ -84,10 +84,6 @@ function pick_unmerged_commits {
         echo
         # Fix python no longer pointing to python2
         repopick -f 324000 324001 324004 324007 324010 || exit 1
-        #2021-07-05
-        repopick -f -t n-asb-2021-07 || exit 1
-        #2021-08-05
-        repopick -f -t n-asb-2021-08 || exit 1
         #2021-09-05
         repopick -f -t n-asb-2021-09 || exit 1
         #2021-10-05
