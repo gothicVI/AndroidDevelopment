@@ -139,19 +139,69 @@ function pick_unmerged_commits {
         repopick -f -t tzdb_N || exit 1
         echo
     fi
+    if [ "${rev}" == "16.0" ]; then
+        echo
+        # Fix python no longer pointing to python2
+        repopick -f 325288 325892 325893 325901 || exit 1
+        #2022-05-05
+        repopick -f -t P_asb_2022-05 || exit 1
+        #2022-06-05
+        repopick -f -t P_asb_2022-06 || exit 1
+        #2022-07-05
+        repopick -f -t P_asb_2022-07 || exit 1
+        #2022-08-05
+        repopick -f -t P_asb_2022-08 || exit 1
+        #2022-09-05
+        repopick -f 338357 || exit 1
+        cp -v ./android/default.xml ./.repo/manifests || exit 1
+        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast external/expat 2>&1 || exit 1
+        repopick -f -t P_asb_2022-09 || exit 1
+        #2022-10-05
+        repopick -f 342095 || exit 1
+        cp -v ./android/default.xml ./.repo/manifests || exit 1
+        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast external/dtc 2>&1 || exit 1
+        repopick -f -t P_asb_2022-10 || exit 1
+        #2022-11-05
+        repopick -f -t P_asb_2022-11 || exit 1
+        #2022-12-05
+        repopick -f -t P_asb_2022-12 || exit 1
+        #2023-01-05
+        repopick -f -t P_asb_2023-01 || exit 1
+        #2023-02-05
+        repopick -f -t P_asb_2023-02 || exit 1
+        #2023-03-05
+        repopick -f -t P_asb_2023-03 || exit 1
+        #2023-04-05
+        repopick -f -t P_asb_2023-04 || exit 1
+        #2023-05-05
+        repopick -f -t P_asb_2023-05 || exit 1
+        #2023-06-05
+        repopick -f -t P_asb_2023-06 || exit 1
+        #2023-07-05
+        repopick -f 361282 || exit 1
+        cp -v ./android/default.xml ./.repo/manifests || exit 1
+        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast tools/apksig 2>&1 || exit 1
+        repopick -f -t P_asb_2023-07 || exit 1
+        echo
+    fi
     if [ "${rev}" == "17.1" ]; then
         echo
         #2023-03-05
         repopick -f 352333 || exit 1
         cp -v ./android/default.xml ./.repo/manifests/ || exit 1
         repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 external/zlib || exit 1
-        repopick -t Q_asb_2023-03 || exit 1
+        repopick -f -t Q_asb_2023-03 || exit 1
         #2023-04-05
-        repopick -t Q_asb_2023-04 || exit 1
+        repopick -f -t Q_asb_2023-04 || exit 1
         #2023-05-05
-        repopick -t Q_asb_2023-05 || exit 1
+        repopick -f -t Q_asb_2023-05 || exit 1
         #2023-06-05
-        repopick -t Q_asb_2023-06 || exit 1
+        repopick -f -t Q_asb_2023-06 || exit 1
+        #2023-07-05
+        repopick -f 362202 || exit 1
+        cp -v ./android/default.xml ./.repo/manifests/ || exit 1
+        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 tools/apksig || exit 1
+        repopick -f -t Q_asb_2023-07 || exit 1
         echo
     fi
     if [ "${rev}" == "18.1" ]; then
