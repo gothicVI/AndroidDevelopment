@@ -135,6 +135,8 @@ function pick_unmerged_commits {
         repopick -f -t n-asb-2023-07 || exit 1
         #2023-08-05
         repopick -f -t n-asb-2023-08 || exit 1
+        #2023-09-05
+        repopick -f -t n-asb-2023-09 || exit 1
         #tzdb2021c_N
         repopick -f -t tzdb_N || exit 1
         echo
@@ -183,6 +185,15 @@ function pick_unmerged_commits {
         repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast tools/apksig 2>&1 || exit 1
         repopick -f -t P_asb_2023-07 || exit 1
         echo
+        #2023-08-05
+        repopick -f 365327 || exit 1
+        cp -v ./android/default.xml ./.repo/manifests || exit 1
+        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast system/ca-certificates 2>&1 || exit 1
+        repopick -f -t P_asb_2023-08 || exit 1
+        echo
+        #2023-09-05
+        repopick -f -t P_asb_2023-09 || exit 1
+        echo
     fi
     if [ "${rev}" == "17.1" ]; then
         echo
@@ -203,23 +214,29 @@ function pick_unmerged_commits {
         repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 tools/apksig || exit 1
         repopick -f -t Q_asb_2023-07 || exit 1
         echo
+        #2023-08-05
+        repopick -f 365443 || exit 1
+        cp -v ./android/default.xml ./.repo/manifests/ || exit 1
+        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 system/ca-certificates || exit 1
+        repopick -f -t Q_asb_2023-08 || exit 1
+        echo
     fi
     if [ "${rev}" == "18.1" ]; then
         echo
-        #2023-08-05
-        repopick -f 364026 || exit 1
-        cp -v ./android/default.xml ./.repo/manifests/ || exit 1
-        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 packages/apps/QuickAccessWallet system/ca-certificates || exit 1
-        repopick -t R_asb_2023-08 || exit 1
+        #2023-09-05
+        # repopick -f 364026 || exit 1
+        # cp -v ./android/default.xml ./.repo/manifests/ || exit 1
+        # repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 packages/apps/QuickAccessWallet system/ca-certificates || exit 1
+        repopick -t R_asb_2023-09 || exit 1
         echo
     fi
     if [ "${rev}" == "19.1" ]; then
         echo
-        #2023-08-05
-        repopick -f 363979 || exit 1
-        cp -v ./android/default.xml ./.repo/manifests/ || exit 1
-        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 external/aac packages/apps/ManagedProvisioning system/ca-certificates || exit 1
-        repopick -t S_asb_2023-08 || exit 1
+        #2023-09-05
+        # repopick -f 363979 || exit 1
+        # cp -v ./android/default.xml ./.repo/manifests/ || exit 1
+        # repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 external/aac packages/apps/ManagedProvisioning system/ca-certificates || exit 1
+        repopick -t S_asb_2023-09 || exit 1
         echo
     fi
     if [ "${rev}" == "20.0" ]; then
