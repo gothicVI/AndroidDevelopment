@@ -224,6 +224,8 @@ function pick_unmerged_commits {
         echo
         #2023-09-05
         repopick -f -t Q_asb_2023-09 || exit 1
+        #2023-10-05
+        repopick -f -t Q_asb_2023-10 || exit 1
     fi
     if [ "${rev}" == "18.1" ]; then
         echo
