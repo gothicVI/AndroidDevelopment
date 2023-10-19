@@ -186,13 +186,11 @@ function pick_unmerged_commits {
         cp -v ./android/default.xml ./.repo/manifests || exit 1
         repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast tools/apksig 2>&1 || exit 1
         repopick -f -t P_asb_2023-07 || exit 1
-        echo
         #2023-08-05
         repopick -f 365327 || exit 1
         cp -v ./android/default.xml ./.repo/manifests || exit 1
         repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast system/ca-certificates 2>&1 || exit 1
         repopick -f -t P_asb_2023-08 || exit 1
-        echo
         #2023-09-05
         repopick -f -t P_asb_2023-09 || exit 1
         echo
@@ -211,21 +209,14 @@ function pick_unmerged_commits {
         #2023-06-05
         repopick -f -t Q_asb_2023-06 || exit 1
         #2023-07-05
-        repopick -f 362202 || exit 1
-        cp -v ./android/default.xml ./.repo/manifests/ || exit 1
-        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 tools/apksig || exit 1
-        repopick -f -t Q_asb_2023-07 || exit 1
-        echo
+        repopick -Q "topic:Q_asb_2023-07+NOT+362202" || exit 1
         #2023-08-05
-        repopick -f 365443 || exit 1
-        cp -v ./android/default.xml ./.repo/manifests/ || exit 1
-        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 system/ca-certificates || exit 1
-        repopick -f -t Q_asb_2023-08 || exit 1
-        echo
+        repopick -Q "topic:Q_asb_2023-08+NOT+365443" || exit 1
         #2023-09-05
         repopick -f -t Q_asb_2023-09 || exit 1
         #2023-10-05
         repopick -f -t Q_asb_2023-10 || exit 1
+        echo
     fi
     if [ "${rev}" == "18.1" ]; then
         echo
