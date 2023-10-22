@@ -5,17 +5,9 @@ set -e
 
 rev=$1
 dev=${2-""}
-myrepo=""
 if [[ "${3-""}" =~ ^[0-9]+$ ]]; then
     # $3 is an integer
     thr=$3
-    if [ "${rev}" == "16.0" ] && [ "${dev}" == "potter" ]; then
-        myrepo=$4
-    fi
-else
-    if [ "${rev}" == "16.0" ] && [ "${dev}" == "potter" ]; then
-        myrepo=$3
-    fi
 fi
 
 ### FUNCTIONS ###
@@ -250,21 +242,6 @@ function pick_unmerged_commits {
     return 0
 }
 
-function switch_tree {
-    orig="boulzordev/android_device_motorola_potter"
-    new="gothicVI/android_device_motorola_potter-lineage-16.0"
-    file="${HOME}/git/AndroidDevelopment/potter_16.0.xml"
-    sed -i "s#${orig}#${new}#g" "${file}" || exit 1
-    return 0
-}
-
-function reverse_switch_tree {
-    cd "${HOME}/git/AndroidDevelopment" || exit 1
-    file="${HOME}/git/AndroidDevelopment/potter_16.0.xml"
-    git restore "${file}" || exit 1
-    return 0
-}
-
 function revert_version_defaults {
     if [ -d build/core ]; then
         cd build/core || exit 1
@@ -299,26 +276,10 @@ function revert_default {
 
 function sync_repository {
     while true; do
-        if [ "${rev}" == "16.0" ] && [ "${dev}" == "potter" ]; then
-            reverse_switch_tree || exit 1
-            cd - > /dev/null || exit 1
-            rm -rfv ./device/motorola
-            export LC_ALL=C
-            # shellcheck source=/dev/null
-            source build/envsetup.sh
-            echo
-            repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast device/motorola/potter 2>&1 || exit 1
-            echo
-            yn="y"
-        else
-            read -rp "Do you wish to sync the repository? Type Y/y, D/d for device specific only, or N/n and hit return: " yn
-        fi
+        read -rp "Do you wish to sync the repository? Type Y/y, D/d for device specific only, or N/n and hit return: " yn
         case $yn in
             [Yy]* ) echo
                     revert_default || exit 1
-                    if [ "${myrepo}" != "" ]; then
-                        switch_tree || exit 1
-                    fi
                     echo
                     revert_version_defaults || exit 1
                     repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 || exit 1
@@ -341,9 +302,6 @@ function sync_repository {
                         rm -rfv ./device/motorola ./kernel/motorola ./vendor/motorola
                     elif [ "${dev}" == "sargo" ]; then
                         rm -rfv ./device/google ./kernel/google ./vendor/google
-                    fi
-                    if [ "${myrepo}" != "" ]; then
-                        switch_tree || exit 1
                     fi
                     echo
                     revert_version_defaults || exit 1
@@ -382,7 +340,7 @@ function build {
     source build/envsetup.sh || exit 1
     breakfast "${dev}" || exit 1
     croot
-    if [ "${thr}" == "" ]; then
+    if [ "${thr-""}" == "" ]; then
         brunch "${dev}" || exit 1
     else
         breakfast "${dev}" || exit 1
@@ -411,7 +369,7 @@ function cleanup {
     rm -fv "./lineage_${dev}-ota-"*.zip
     rm -fv "./lineage-${rev}-"*"-UNOFFICIAL-${dev}.zip.md5sum"
     # Move/Rename the output zip
-    mv -v "${output}" "${HOME}/Schreibtisch/android/${outputtag}${outputname}_security-patch-date_${securitypatchdate}${myrepo}.zip" || exit 1
+    mv -v "${output}" "${HOME}/Schreibtisch/android/${outputtag}${outputname}_security-patch-date_${securitypatchdate}.zip" || exit 1
     pkill java
     echo
     while true; do
@@ -499,7 +457,4 @@ echo "Cleanup..."
 echo "##########"
 echo
 cleanup || exit 1
-if [ "${myrepo}" != "" ]; then
-    reverse_switch_tree || exit 1
-fi
 exit 0
