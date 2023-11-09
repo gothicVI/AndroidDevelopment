@@ -32,18 +32,28 @@ function update_repo {
 
 function local_security_patch_level {
     echo "The current security patch level for laos ${rev} is..."
-    grep "PLATFORM_SECURITY_PATCH := " build/core/version_defaults.mk
+    if (( $(echo "$rev < 21.0" |bc -l) )); then
+        grep "PLATFORM_SECURITY_PATCH := " build/core/version_defaults.mk
+    else
+        grep "BUILD_ID=" build/core/build_id.mk
+    fi
     return 0
 }
 
 function remote_security_patch_level {
     if [ "${rev}" == "14.1" ]; then
         url="https://raw.githubusercontent.com/LineageOS/android_build/cm-14.1/core/version_defaults.mk"
-    else
+    elif (( $(echo "$rev < 21.0" |bc -l) )); then
         url="https://raw.githubusercontent.com/LineageOS/android_build/lineage-${rev}/core/version_defaults.mk"
+    else
+        url="https://raw.githubusercontent.com/LineageOS/android_build/lineage-${rev}/core/build_id.mk"
     fi
     echo "The current remote security patch level for laos ${rev} is..."
-    wget -q "${url}" -O - | grep "PLATFORM_SECURITY_PATCH := "
+    if (( $(echo "$rev < 21.0" |bc -l) )); then
+        wget -q "${url}" -O - | grep "PLATFORM_SECURITY_PATCH := "
+    else
+        wget -q "${url}" -O - | grep "BUILD_ID="
+    fi
     return 0
 }
 
@@ -305,13 +315,28 @@ function pick_unmerged_commits {
         repopick -p -t T_asb_2024-05 || exit 1
         echo
     fi
+    if [ "${rev}" == "21.0" ]; then
+        echo
+        #2024-05-05
+        repopick -f 388588 || exit 1
+        cp -v ./android/default.xml ./.repo/manifests/ || exit 1
+        cp -v ./android/snippets/lineage.xml ./.repo/manifests/snippets/ || exit 1
+        cp -v ./android/snippets/pixel.xml ./.repo/manifests/snippets/ || exit 1
+        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 || exit 1
+        repopick -p -t U_asb_2024-05 || exit 1
+        echo
+    fi
     return 0
 }
 
 function revert_version_defaults {
     if [ -d build/core ]; then
         cd build/core || exit 1
-        git restore version_defaults.mk || exit 1
+        if (( $(echo "$rev < 21.0" |bc -l) )); then
+            git restore version_defaults.mk || exit 1
+        else
+            git restore build_id.mk || exit 1
+        fi
         cd - > /dev/null || exit 1
     fi
     return 0
@@ -323,7 +348,11 @@ function edit_security_patch_date {
         read -rp "Do you wish to edit the security patch date? Type Y/y or N/n and hit return: " yn
         case $yn in
             [Yy]* ) echo
-                    vim build/core/version_defaults.mk || exit 1
+                    if (( $(echo "$rev < 21.0" |bc -l) )); then
+                        vim build/core/version_defaults.mk || exit 1
+                    else
+                        vim build/core/build_id.mk
+                    fi
                     local_security_patch_level || exit 1
                     break;;
             [Nn]* ) break;;
@@ -418,7 +447,11 @@ function build {
 
 function cleanup {
     # Get the last column of the grep, i.e., the actual security patch date
-    securitypatchdate="$(grep "PLATFORM_SECURITY_PATCH := " "${HOME}/android/laos_${rev}/build/core/version_defaults.mk" | awk '{print $NF}')"
+    if (( $(echo "$rev < 21.0" |bc -l) )); then
+        securitypatchdate="$(grep "PLATFORM_SECURITY_PATCH := " "${HOME}/android/laos_${rev}/build/core/version_defaults.mk" | awk '{print $NF}')"
+    else
+        securitypatchdate="$(grep "BUILD_ID=" "${HOME}/android/laos_${rev}/build/core/build_id.mk" | awk -F '=' '{print $2}')"
+    fi
     output="$(ls "lineage-${rev}-"*"-UNOFFICIAL-${dev}.zip")"
     # Remove the '.zip' ending
     outputname="$(basename "${output}" .zip)"
