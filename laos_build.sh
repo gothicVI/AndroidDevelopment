@@ -185,6 +185,11 @@ function pick_unmerged_commits {
         repopick -f -t P_asb_2023-08 || exit 1
         #2023-09-05
         repopick -f -t P_asb_2023-09 || exit 1
+        #2023-10-05
+        repopick -f 370704 || exit 1
+        cp -v ./android/default.xml ./.repo/manifests/ || exit 1
+        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 external/libxml2 || exit 1
+        repopick -f -t P_asb_2023-10 || exit 1
         echo
     fi
     if [ "${rev}" == "17.1" ]; then
