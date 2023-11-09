@@ -294,6 +294,17 @@ function pick_unmerged_commits {
         repopick -p -t T_asb_2024-03 || exit 1
         echo
     fi
+    if [ "${rev}" == "21.0" ]; then
+        echo
+        #2024-03-05
+        repopick -f 385429 || exit 1
+        cp -v ./android/default.xml ./.repo/manifests/ || exit 1
+        cp -v ./android/snippets/lineage.xml ./.repo/manifests/snippets/ || exit 1
+        cp -v ./android/snippets/pixel.xml ./.repo/manifests/snippets/ || exit 1
+        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 || exit 1
+        repopick -p -t U_asb_2024-03 || exit 1
+        echo
+    fi
     return 0
 }
 
