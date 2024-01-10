@@ -135,6 +135,8 @@ function pick_unmerged_commits {
         repopick -f -t n-asb-2023-11 || exit 1
         #2023-12-05
         repopick -f -t n-asb-2023-12 || exit 1
+        #2024-01-05
+        repopick -f -t n-asb-2024-01 || exit 1
         #tzdb2021c_N
         repopick -f -t tzdb_N || exit 1
         echo
@@ -198,6 +200,8 @@ function pick_unmerged_commits {
         repopick -f -t P_asb_2023-11 || exit 1
         #2023-12-05
         repopick -f -t P_asb_2023-12 || exit 1
+        #2024-01-05
+        repopick -f -t P_asb_2024-01 || exit 1
         echo
     fi
     if [ "${rev}" == "17.1" ]; then
@@ -247,35 +251,37 @@ function pick_unmerged_commits {
         cp -v ./android/default.xml ./.repo/manifests || exit 1
         repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast external/pdfium 2>&1 || exit 1
         repopick -f -t Q_asb_2023-12 || exit 1
+        #2024-01-05
+        repopick -f -t Q_asb_2024-01 || exit 1
         echo
     fi
     if [ "${rev}" == "18.1" ]; then
         echo
-        #2023-12-05
-        repopick -f 376996 || exit 1
-        cp -v ./android/default.xml ./.repo/manifests/ || exit 1
-        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 cts external/pdfium || exit 1
-        repopick -t R_asb_2023-12 || exit 1
+        #2024-01-05
+        # repopick -f 376996 || exit 1
+        # cp -v ./android/default.xml ./.repo/manifests/ || exit 1
+        # repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 cts external/pdfium || exit 1
+        repopick -t R_asb_2024-01 || exit 1
         echo
     fi
     if [ "${rev}" == "19.1" ]; then
         echo
-        #2023-12-05
-        repopick -f 376774 || exit 1
-        cp -v ./android/default.xml ./.repo/manifests/ || exit 1
-        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 cts external/pdfium system/netd || exit 1
-        repopick -t S_asb_2023-12 || exit 1
+        #2024-01-05
+        # repopick -f 376774 || exit 1
+        # cp -v ./android/default.xml ./.repo/manifests/ || exit 1
+        # repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 cts external/pdfium system/netd || exit 1
+        repopick -t S_asb_2024-01 || exit 1
         echo
     fi
     if [ "${rev}" == "20.0" ]; then
         echo
-        #2023-12-05
-        repopick -f 376247 || exit 1
-        cp -v ./android/default.xml ./.repo/manifests/ || exit 1
-        cp -v ./android/snippets/lineage.xml ./.repo/manifests/snippets/ || exit 1
-        cp -v ./android/snippets/pixel.xml ./.repo/manifests/snippets/ || exit 1
-        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 cts external/pdfium || exit 1
-        repopick -p -t T_asb_2023-12 || exit 1
+        #2024-01-05
+        # repopick -f 376247 || exit 1
+        # cp -v ./android/default.xml ./.repo/manifests/ || exit 1
+        # cp -v ./android/snippets/lineage.xml ./.repo/manifests/snippets/ || exit 1
+        # cp -v ./android/snippets/pixel.xml ./.repo/manifests/snippets/ || exit 1
+        # repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 cts external/pdfium || exit 1
+        repopick -p -t T_asb_2024-01 || exit 1
         echo
     fi
     return 0
