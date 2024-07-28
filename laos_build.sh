@@ -157,6 +157,8 @@ function pick_unmerged_commits {
         repopick -f -t n-asb-2024-05 || exit 1
         #2024-06-05
         repopick -f -t n-asb-2024-06 || exit 1
+        #2024-07-05
+        repopick -f -t n-asb-2024-07 || exit 1
         #tzdb2021c_N
         repopick -f -t tzdb_N || exit 1
         echo
@@ -232,6 +234,8 @@ function pick_unmerged_commits {
         repopick -f -t P_asb_2024-05 || exit 1
         #2024-06-05
         repopick -f -t P_asb_2024-06 || exit 1
+        #2024-07-05
+        repopick -f -t P_asb_2024-07 || exit 1
         echo
     fi
     if [ "${rev}" == "17.1" ]; then
@@ -291,6 +295,10 @@ function pick_unmerged_commits {
         repopick -f -t Q_asb_2024-04 || exit 1
         #2024-05-05
         repopick -f -t Q_asb_2024-05 || exit 1
+        #2024-06-05
+        repopick -f -t Q_asb_2024-06 || exit 1
+        #2024-05-07
+        repopick -f -t Q_asb_2024-07 || exit 1
         echo
     fi
     if [ "${rev}" == "18.1" ]; then
@@ -306,35 +314,37 @@ function pick_unmerged_commits {
         repopick -t R_asb_2024-05 || exit 1
         #2024-06-05
         repopick -t R_asb_2024-06 || exit 1
+        #2024-07-05
+        repopick -t R_asb_2024-07 || exit 1
         echo
     fi
     if [ "${rev}" == "19.1" ]; then
         echo
-        #2024-06-05
-        repopick -f 394523 || exit 1
-        cp -v ./android/default.xml ./.repo/manifests/ || exit 1
-        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 system/libfmq || exit 1
-        repopick -t S_asb_2024-06 || exit 1
+        #2024-07-05
+        # repopick -f 394523 || exit 1
+        # cp -v ./android/default.xml ./.repo/manifests/ || exit 1
+        # repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 system/libfmq || exit 1
+        repopick -t S_asb_2024-07 || exit 1
         echo
     fi
     if [ "${rev}" == "20.0" ]; then
         echo
-        #2024-06-05
-        repopick -f 394238 || exit 1
-        cp -v ./android/default.xml ./.repo/manifests/ || exit 1
-        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 system/libfmq || exit 1
-        repopick -p -t T_asb_2024-06 || exit 1
+        #2024-07-05
+        # repopick -f 394238 || exit 1
+        # cp -v ./android/default.xml ./.repo/manifests/ || exit 1
+        # repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 system/libfmq || exit 1
+        repopick -p -t T_asb_2024-07 || exit 1
         echo
     fi
     if [ "${rev}" == "21.0" ]; then
         echo
-        #2024-06-05
-        # repopick -f 388588 || exit 1
-        # cp -v ./android/default.xml ./.repo/manifests/ || exit 1
-        # cp -v ./android/snippets/lineage.xml ./.repo/manifests/snippets/ || exit 1
-        # cp -v ./android/snippets/pixel.xml ./.repo/manifests/snippets/ || exit 1
-        # repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 || exit 1
-        repopick -p -t U_asb_2024-06 || exit 1
+        #2024-07-05
+        repopick -f 396638 || exit 1
+        cp -v ./android/default.xml ./.repo/manifests/ || exit 1
+        cp -v ./android/snippets/lineage.xml ./.repo/manifests/snippets/ || exit 1
+        cp -v ./android/snippets/pixel.xml ./.repo/manifests/snippets/ || exit 1
+        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 || exit 1
+        repopick -p -t U_asb_2024-07 || exit 1
         echo
     fi
     return 0
