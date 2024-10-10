@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <!-- akita vendor -->
+  <project name="TheMuppets/proprietary_vendor_google_akita" path="vendor/google/akita" remote="github" revision="lineage-21"/>
+</manifest>

@@ -18,7 +18,7 @@ repo init -u https://github.com/LineageOS/android.git -b lineage-20.0 --git-lfs
 repo init -u https://github.com/LineageOS/android.git -b lineage-21.0 --git-lfs
 ```
 
-To add the repositories for the devices potter, sargo, and thea place (or symlink) the respective files into
+To add the repositories for the devices akita, potter, sargo, and thea place (or symlink) the respective files into
 
 ```bash
 .repo/local_manifests/
@@ -39,8 +39,8 @@ To add the repositories for the devices potter, sargo, and thea place (or symlin
                 `mv roomservice_sargo_19.1.xml roomservice.xml`
 * lineage-20.0: `roomservice_sargo_20.0.xml`, `sargo_20.0.xml`<br>
                 `mv roomservice_sargo_20.0.xml roomservice.xml`
-* lineage-21.0: `roomservice_sargo_21.0.xml`, `sargo_21.0.xml`<br>
-                `mv roomservice_sargo_21.0.xml roomservice.xml`
+* lineage-21.0: `roomservice_akita_sargo_21.0.xml`, `akita_21.0.xml`, `sargo_21.0.xml`<br>
+                `mv roomservice_akita_sargo_21.0.xml roomservice.xml`
 
 Then to sync up:
 

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
+  <!-- akita device, kernel, vendor -->
+  <project path="device/google/akita" remote="github" name="LineageOS/android_device_google_akita" revision="lineage-21" />
+  <project path="device/google/zuma" remote="github" name="LineageOS/android_device_google_zuma" revision="lineage-21" />
+  <project path="device/google/akita-kernel" remote="aosp-akita" name="device/google/akita-kernel" clone-depth="1" />
+  <project path="device/google/gs101" remote="github" name="LineageOS/android_device_google_gs101" revision="lineage-21" />
   <!-- sargo device, kernel, vendor -->
   <project name="LineageOS/android_device_google_sargo" path="device/google/sargo" remote="github" revision="lineage-21" />
   <project name="LineageOS/android_device_google_bonito" path="device/google/bonito" remote="github" revision="lineage-21" />
