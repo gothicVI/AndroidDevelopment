@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <!-- akita device, kernel -->
+  <project path="device/google/akita" remote="github" name="LineageOS/android_device_google_akita" revision="lineage-22.0" />
+  <project path="device/google/zuma" remote="github" name="LineageOS/android_device_google_zuma" revision="lineage-22.0" />
+  <project path="device/google/akita-kernels/5.15" remote="aosp-akita" name="device/google/akita-kernels/5.15" clone-depth="1" />
+  <project path="device/google/gs101" remote="github" name="LineageOS/android_device_google_gs101" revision="lineage-22.0" />
+  <!-- sargo device, kernel -->
+  <project path="device/google/sargo" remote="github" name="LineageOS/android_device_google_sargo" revision="lineage-22.0" />
+  <project path="device/google/bonito" remote="github" name="LineageOS/android_device_google_bonito" revision="lineage-22.0" />
+  <project path="device/google/gs-common" remote="github" name="LineageOS/android_device_google_gs-common" revision="lineage-22.0" />
+  <project path="kernel/google/msm-4.9" remote="github" name="LineageOS/android_kernel_google_msm-4.9" revision="lineage-22.0" />
+  <!-- Other needed projects -->
+  <project path="packages/apps/ElmyraService" remote="github" name="LineageOS/android_packages_apps_ElmyraService" revision="lineage-22.0" />
+</manifest>
