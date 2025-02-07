@@ -1,0 +1,82 @@
+# Use Ubuntu 20.04 as the base image
+FROM ubuntu:20.04
+
+# Define build-time arguments for hostname and username
+ARG HOSTNAME
+ARG USERNAME
+
+# Set the hostname dynamically based on the build argument
+RUN echo "$HOSTNAME" > /etc/hostname
+
+# Set non-interactive mode for apt
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Update and install required dependencies
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        bc \
+        bison \
+        build-essential \
+        curl \
+        flex \
+        g++-multilib \
+        gcc-multilib \
+        git \
+        git-lfs \
+        gnupg \
+        gperf \
+        imagemagick \
+        lib32readline-dev \
+        lib32z1-dev \
+        libelf-dev \
+        liblz4-tool \
+        lz4 \
+        libsdl1.2-dev \
+        libssl-dev \
+        libxml2 \
+        libxml2-utils \
+        lzop \
+        pngcrush \
+        rsync \
+        schedtool \
+        squashfs-tools \
+        unzip \
+        xsltproc \
+        zip \
+        zlib1g-dev \
+        lib32ncurses5-dev \
+        libncurses5 \
+        libncurses5-dev \
+        openjdk-8-jdk \
+        python-is-python2 \
+    && apt-get clean \
+    && rm -rfv /var/lib/apt/lists/*
+
+# Set up Python symlink for compatibility
+RUN ln -sf /usr/bin/python2 /usr/bin/python
+
+# Modify java.security to remove TLSv1 and TLSv1.1
+RUN sed -i 's/\(jdk\.tls\.disabledAlgorithms=.*\)\bTLSv1,\s*TLSv1\.1,\s*/\1/' /etc/java-8-openjdk/security/java.security
+
+# Add a user to avoid running as root
+RUN useradd -ms /bin/bash "$USERNAME"
+
+# Set the USER environment variable
+ENV USER="$USERNAME"
+
+# Set up a working directory
+WORKDIR "/home/$USERNAME"
+RUN mkdir -p "/home/$USERNAME/android"
+
+# Change ownership of the working directory to the new user
+RUN chown -R $USERNAME:$USERNAME /home/$USERNAME
+
+# Set Java environment variables
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+ENV PATH=$JAVA_HOME/bin:$PATH
+
+# Switch to the non-root user
+USER "$USERNAME"
+
+# Command to keep the container running
+CMD ["bash"]

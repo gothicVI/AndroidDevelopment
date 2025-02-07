@@ -48,6 +48,14 @@ Then to sync up:
 repo sync -j $(nproc --all) -c --no-tags --no-clone-bundle --force-sync --fail-fast
 ```
 
+Building the docker container
+-----------------------------
+
+```bash
+docker build --build-arg HOSTNAME=$(hostname) --build-arg USERNAME=${USER} -f Dockerfile_14.1 -t gothicvi/laos:14.1 .
+docker push gothicvi/laos:14.1
+```
+
 Solving issues
 --------------
 
