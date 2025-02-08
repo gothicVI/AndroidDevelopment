@@ -36,23 +36,28 @@ function local_security_patch_level {
         grep "PLATFORM_SECURITY_PATCH := " build/core/version_defaults.mk
     else
         grep "BUILD_ID=" build/core/build_id.mk
+        grep "string_value:" build/release/flag_values/ap2a/RELEASE_PLATFORM_SECURITY_PATCH.textproto
+        grep "RELEASE_PLATFORM_SECURITY_PATCH" build/release/build_config/ap2a.scl
     fi
     return 0
 }
 
 function remote_security_patch_level {
-    if [ "${rev}" == "14.1" ]; then
-        url="https://raw.githubusercontent.com/LineageOS/android_build/cm-14.1/core/version_defaults.mk"
-    elif (( $(echo "$rev < 21.0" |bc -l) )); then
-        url="https://raw.githubusercontent.com/LineageOS/android_build/lineage-${rev}/core/version_defaults.mk"
-    else
-        url="https://raw.githubusercontent.com/LineageOS/android_build/lineage-${rev}/core/build_id.mk"
-    fi
     echo "The current remote security patch level for laos ${rev} is..."
     if (( $(echo "$rev < 21.0" |bc -l) )); then
+        if [ "${rev}" == "14.1" ]; then
+            url="https://raw.githubusercontent.com/LineageOS/android_build/cm-14.1/core/version_defaults.mk"
+        else
+            url="https://raw.githubusercontent.com/LineageOS/android_build/lineage-${rev}/core/version_defaults.mk"
+        fi
         wget -q "${url}" -O - | grep "PLATFORM_SECURITY_PATCH := "
     else
+        url="https://raw.githubusercontent.com/LineageOS/android_build/lineage-${rev}/core/build_id.mk"
         wget -q "${url}" -O - | grep "BUILD_ID="
+        url="https://raw.githubusercontent.com/LineageOS/android_build_release/lineage-${rev}/flag_values/ap2a/RELEASE_PLATFORM_SECURITY_PATCH.textproto"
+        wget -q "${url}" -O - | grep "string_value:"
+        url="https://raw.githubusercontent.com/LineageOS/android_build_release/lineage-${rev}/build_config/ap2a.scl"
+        wget -q "${url}" -O - | grep "RELEASE_PLATFORM_SECURITY_PATCH"
     fi
     return 0
 }
@@ -421,6 +426,10 @@ function revert_version_defaults {
             git restore version_defaults.mk || exit 1
         else
             git restore build_id.mk || exit 1
+            cd - > /dev/null || exit 1
+            cd build/release || exit 1
+            git restore flag_values/ap2a/RELEASE_PLATFORM_SECURITY_PATCH.textproto || exit 1
+            git restore build_config/ap2a.scl || exit 1
         fi
         cd - > /dev/null || exit 1
     fi
@@ -436,7 +445,7 @@ function edit_security_patch_date {
                     if (( $(echo "$rev < 21.0" |bc -l) )); then
                         vim build/core/version_defaults.mk || exit 1
                     else
-                        vim build/core/build_id.mk
+                        vim build/core/build_id.mk build/release/flag_values/ap2a/RELEASE_PLATFORM_SECURITY_PATCH.textproto build/release/build_config/ap2a.scl
                     fi
                     local_security_patch_level || exit 1
                     break;;
@@ -535,7 +544,13 @@ function cleanup {
     if (( $(echo "$rev < 21.0" |bc -l) )); then
         securitypatchdate="$(grep "PLATFORM_SECURITY_PATCH := " "${HOME}/android/laos_${rev}/build/core/version_defaults.mk" | awk '{print $NF}')"
     else
-        securitypatchdate="$(grep "BUILD_ID=" "${HOME}/android/laos_${rev}/build/core/build_id.mk" | awk -F '=' '{print $2}')"
+        secpatchdate_1="$(grep "string_value:" "${HOME}/android/laos_${rev}/build/release/flag_values/ap2a/RELEASE_PLATFORM_SECURITY_PATCH.textproto" | awk -F ": " '{print $2}' | tr -d \")"
+        secpatchdate_2="$(grep "RELEASE_PLATFORM_SECURITY_PATCH" "${HOME}/android/laos_${rev}/build/release/build_config/ap2a.scl" | awk -F ", " '{print $2}' | awk -F ")" '{print $1}' | tr -d \")"
+        if [ "${secpatchdate_1}" == "${secpatchdate_2}" ]; then
+            securitypatchdate="${secpatchdate_1}"
+        else
+            read -rp "Enter security patch date in the format YYYY-MM-DD " securitypatchdate
+        fi
     fi
     output="$(ls "lineage-${rev}-"*"-UNOFFICIAL-${dev}.zip")"
     # Remove the '.zip' ending
