@@ -66,7 +66,7 @@ function compare_security_patch_level {
 
 function clean_repository {
     while true; do
-        read -rp "Do you wish to clean the repository? Type A/a for agressive or Y/y for normal or N/n and hit return: " ayn
+        read -rp "Do you wish to clean the repository? Type A/a for aggressive or Y/y for normal or N/n and hit return: " ayn
         case $ayn in
             [Aa]* ) echo;
                     repo forall -j 1 -c git gc --aggressive --prune=now && repo forall -j 1 -c git repack -Ad && repo forall -j 1 -c git prune;
@@ -521,7 +521,7 @@ function build {
     breakfast "${dev}" || exit 1
     croot
     if [ "${thr-""}" == "" ]; then
-        brunch "${dev}" || exit 1
+        brunch "${dev}" || exit 1  # codespell:ignore brunch
     else
         breakfast "${dev}" || exit 1
         make bacon -j "${thr}" || exit 1
@@ -588,7 +588,7 @@ function cleanup {
 
 clear
 echo
-echo "Update the repo commant..."
+echo "Update the repo command..."
 echo "##########################"
 echo
 update_repo || exit 1

@@ -8,78 +8,47 @@
 #  git commit
 # To check all files in the repositoy run
 #  pre-commit run --all-files
-exclude: \.nb$|\.m$
 repos:
+  - repo: meta # this repo checks pre-commit itself
+    hooks:
+    - id: check-hooks-apply # configured hooks apply to at least one file
+    - id: check-useless-excludes # ensures exclude directives apply to at least one file
+  - repo: https://gitlab.com/vojko.pribudic.foss/pre-commit-update
+    rev: v0.6.1
+    hooks:
+    - id: pre-commit-update
+      args: [--dry-run]
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v5.0.0
     hooks:
-      - id: check-added-large-files
-      - id: check-executables-have-shebangs
-      - id: check-shebang-scripts-are-executable
-      - id: check-merge-conflict
-      - id: mixed-line-ending
-      - id: trailing-whitespace
-        types: [text]
-        exclude: \.dat$|\.in$
+    - id: check-added-large-files
+    # - id: check-ast
+    # - id: check-builtin-literals
+    - id: check-case-conflict
+    - id: check-executables-have-shebangs
+    # - id: check-json
+    - id: check-merge-conflict
+    - id: check-shebang-scripts-are-executable
+    # - id: check-toml
+    - id: check-xml
+    - id: check-yaml
+    # - id: debug-statements
+    - id: end-of-file-fixer
+    - id: mixed-line-ending
+    - id: no-commit-to-branch
+    # - id: pretty-format-json
+    #   args: ["--autofix"]
+    # - id: requirements-txt-fixer
+    # - id: sort-simple-yaml
+    - id: trailing-whitespace
+      types: [text]
   - repo: https://github.com/koalaman/shellcheck-precommit
-    rev: v0.9.0
+    rev: v0.10.0
     hooks:
-    -   id: shellcheck
-#       args: ["--severity=warning"]  # Optionally only show errors and warnings
-  - repo: local
+    - id: shellcheck
+      # args: ["--severity=warning"] # Optionally only show errors and warnings
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.4.1
     hooks:
-      - id: flake8
-        name: flake8
-        entry: flake8
-        language: system
-        types: [python]
-        args:
-          [
-            "--config=setup.cfg", # Link to your config file
-            "--ignore=E265,  # block comment should start with ‘# ‘
-                      E266,  # too many leading ‘#’ for block comment
-                      E501,  # line too long
-                      F401,  # Module imported but unused
-                      F403,  # 'from module import *' used
-                      W503,  # line break before binary operator",
-          ]
-      - id: pycodestyle
-        name: pycodestyle
-        entry: pycodestyle
-        language: system
-        types: [python]
-        args:
-          [
-            "--config=setup.cfg", # Link to your config file
-            # E265 block comment should start with ‘# ‘
-            # E266 too many leading ‘#’ for block comment
-            # E501 line too long
-            # W503 line break before binary operator",
-            "--ignore=E265,E266,E501,W503,",
-          ]
-      - id: pydocstyle
-        name: pydocstyle
-        entry: pydocstyle
-        language: system
-        types: [python]
-        args:
-          [
-            "--config=setup.cfg", # Link to your config file
-            # D100 Missing docstring in public module
-            # D101 Missing docstring in public class
-            # D102 Missing docstring in public method
-            # D103 Missing docstring in public function",
-            "--ignore=D100,D101,D102,D103,D212,",
-          ]
-      - id: pylint
-        name: pylint
-        entry: pylint
-        language: system
-        types: [python]
-        args:
-          [
-            "-rn", # Only display messages
-            "-sn", # Don't display the score
-            "--rcfile=pylintrc", # Link to your config file
-            "--disable=line-too-long,wildcard-import,unused-wildcard-import,missing-module-docstring,missing-function-docstring",
-          ]
+    - id: codespell
+      args: ['--skip', '*.csv,*.txt']
