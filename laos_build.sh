@@ -727,6 +727,32 @@ if [ "${rev}" == "14.1" ]; then
     else
         exit 1
     fi
+elif [ "${rev}" == "17.1" ]; then
+    docker run --rm -it \
+        --pull=never \
+        -v "${HOME}/android/laos_17.1":"/home/${USER}/android/laos_17.1" \
+        -v /tmp:/tmp \
+        --hostname "$(hostname)" \
+        -e rev="${rev}" \
+        -e dev="${dev}" \
+        -e USER="${USER}" \
+        gothicvi/laos:17.1 \
+        bash -c " \
+            cd android/laos_17.1 || exit 1; \
+            export LC_ALL=C; \
+            source build/envsetup.sh || exit 1; \
+            breakfast \"${dev}\" || exit 1; \
+            croot; \
+            brunch \"${dev}\" || exit 1; \
+            echo \"\${OUT}\" > \"/tmp/out_${rev}_${dev}\" || exit 1; \
+            exit 0"
+    # shellcheck disable=SC2181
+    if [ "$?" == 0 ]; then
+        OUT=$(cat "/tmp/out_${rev}_${dev}")
+        cd "${OUT}" || exit 1
+    else
+        exit 1
+    fi
 else
     build || exit 1
 fi

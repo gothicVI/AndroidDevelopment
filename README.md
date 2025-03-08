@@ -63,6 +63,8 @@ Building the docker container
 ```bash
 docker build --build-arg HOSTNAME=$(hostname) --build-arg USERNAME=${USER} -f Dockerfile_14.1 -t gothicvi/laos:14.1 .
 docker push gothicvi/laos:14.1
+docker build --build-arg HOSTNAME=$(hostname) --build-arg USERNAME=${USER} -f Dockerfile_17.1 -t gothicvi/laos:17.1 .
+docker push gothicvi/laos:17.1
 ```
 
 Solving issues
