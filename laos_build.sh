@@ -181,6 +181,8 @@ function pick_unmerged_commits {
         repopick -f -t n-asb-2025-01 || exit 1
         #2025-02-05
         repopick -f -t n-asb-2025-02 || exit 1
+        #2025-03-05
+        repopick -f -t n-asb-2025-03 || exit 1
         #tzdb_N
         repopick -f -t tzdb_N || exit 1
         echo
@@ -275,6 +277,8 @@ function pick_unmerged_commits {
         repopick -f -t P_asb_2025-01 || exit 1
         #2025-02-05
         repopick -f -t P_asb_2025-02 || exit 1
+        #2025-03-05
+        repopick -f -t P_asb_2025-03 || exit 1
         echo
     fi
     if [ "${rev}" == "17.1" ]; then
@@ -355,6 +359,11 @@ function pick_unmerged_commits {
         repopick -f -t Q_asb_2025-01 || exit 1
         #2025-02-05
         repopick -t Q_asb_2025-02 || exit 1
+        #2025-03-05
+        repopick -f 421785 || exit 1
+        cp -v ./android/default.xml ./.repo/manifests || exit 1
+        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast external/dng_sdk 2>&1 || exit 1
+        repopick -t Q_asb_2025-03 || exit 1
         echo
     fi
     if [ "${rev}" == "18.1" ]; then
@@ -395,33 +404,38 @@ function pick_unmerged_commits {
         repopick -t R_asb_2025-01 || exit 1
         #2025-02-05
         repopick -t R_asb_2025-02 || exit 1
+        #2025-03-05
+        repopick -f 421145 || exit 1
+        cp -v ./android/default.xml ./.repo/manifests/ || exit 1
+        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 external/dng_sdk || exit 1
+        repopick -t R_asb_2025-03 || exit 1
         echo
     fi
     if [ "${rev}" == "19.1" ]; then
         echo
-        #2025-02-05
-        # repopick -f 414570 || exit 1
-        # cp -v ./android/default.xml ./.repo/manifests/ || exit 1
-        # repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 external/giflib || exit 1
-        repopick -t S_asb_2025-02 || exit 1
+        #2025-03-05
+        repopick -f 421059 || exit 1
+        cp -v ./android/default.xml ./.repo/manifests/ || exit 1
+        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 external/dng_sdk || exit 1
+        repopick -t S_asb_2025-03 || exit 1
         echo
     fi
     if [ "${rev}" == "20.0" ]; then
         echo
-        #2025-02-05
-        # repopick -f 414554 || exit 1
-        # cp -v ./android/default.xml ./.repo/manifests/ || exit 1
-        # repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 external/giflib || exit 1
-        repopick -p -t T_asb_2025-02 || exit 1
+        #2025-03-05
+        repopick -f 421011 || exit 1
+        cp -v ./android/default.xml ./.repo/manifests/ || exit 1
+        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 external/dng_sdk || exit 1
+        repopick -p -t T_asb_2025-03 || exit 1
         echo
     fi
     if [ "${rev}" == "21.0" ]; then
         echo
-        #2025-02-05
-        # repopick -f 414871 || exit 1
-        # cp -v ./android/default.xml ./.repo/manifests/ || exit 1
-        # repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 external/giflib || exit 1
-        repopick -p -t U_asb_2025-02 || exit 1
+        #2025-03-05
+        repopick -f 420932 || exit 1
+        cp -v ./android/default.xml ./.repo/manifests/ || exit 1
+        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 external/dng_sdk || exit 1
+        repopick -p -t U_asb_2025-03 || exit 1
         echo
     fi
     return 0
