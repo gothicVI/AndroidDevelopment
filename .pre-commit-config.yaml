@@ -14,12 +14,12 @@ repos:
     - id: check-hooks-apply # configured hooks apply to at least one file
     - id: check-useless-excludes # ensures exclude directives apply to at least one file
   - repo: https://gitlab.com/vojko.pribudic.foss/pre-commit-update
-    rev: v0.6.1
+    rev: v0.8.0
     hooks:
     - id: pre-commit-update
       args: [--dry-run]
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
     - id: check-added-large-files
     # - id: check-ast
@@ -35,7 +35,7 @@ repos:
     # - id: debug-statements
     - id: end-of-file-fixer
     - id: mixed-line-ending
-    - id: no-commit-to-branch
+    # - id: no-commit-to-branch
     # - id: pretty-format-json
     #   args: ["--autofix"]
     # - id: requirements-txt-fixer
@@ -43,7 +43,7 @@ repos:
     - id: trailing-whitespace
       types: [text]
   - repo: https://github.com/koalaman/shellcheck-precommit
-    rev: v0.10.0
+    rev: v0.11.0
     hooks:
     - id: shellcheck
       # args: ["--severity=warning"] # Optionally only show errors and warnings
