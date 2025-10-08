@@ -469,21 +469,21 @@ function pick_unmerged_commits {
     fi
     if [ "${rev}" == "21.0" ]; then
         echo
-        #2025-09-05
-        repopick -f 451068 || exit 1
-        cp -v ./android/default.xml ./.repo/manifests/ || exit 1
-        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 packages/modules/CellBroadcastService || exit 1
-        repopick -p -t U_asb_2025-09 || exit 1
+        #2025-10-05
+        # repopick -f 451068 || exit 1
+        # cp -v ./android/default.xml ./.repo/manifests/ || exit 1
+        # repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 packages/modules/CellBroadcastService || exit 1
+        repopick -p -t U_asb_2025-10 || exit 1
         echo
     fi
     if [ "${rev}" == "22.2" ]; then
         echo
-        #2025-09-05
-        repopick -f 449919 || exit 1
-        cp -v ./android/default.xml ./.repo/manifests/ || exit 1
+        #2025-10-05
+        # repopick -f 449919 || exit 1
+        # cp -v ./android/default.xml ./.repo/manifests/ || exit 1
         # cp -v ./android/snippets/pixel.xml ./.repo/manifests/snippets/ || exit 1
-        repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 packages/modules/CellBroadcastService packages/modules/IntentResolver || exit 1
-        repopick -p -t V_asb_2025-09 || exit 1
+        # repo sync -v -j 1 -c --no-tags --no-clone-bundle --force-sync --fail-fast 2>&1 packages/modules/CellBroadcastService packages/modules/IntentResolver || exit 1
+        repopick -p -t V_asb_2025-10 || exit 1
         # repopick -p -t V_asb_2025-05_pixel || exit 1
         echo
     fi
