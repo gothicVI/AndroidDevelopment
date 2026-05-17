@@ -14,7 +14,7 @@ repos:
     - id: check-hooks-apply # configured hooks apply to at least one file
     - id: check-useless-excludes # ensures exclude directives apply to at least one file
   - repo: https://gitlab.com/vojko.pribudic.foss/pre-commit-update
-    rev: v0.8.0
+    rev: v0.10.0
     hooks:
     - id: pre-commit-update
       args: [--dry-run]
@@ -48,7 +48,7 @@ repos:
     - id: shellcheck
       # args: ["--severity=warning"] # Optionally only show errors and warnings
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.4.1
+    rev: v2.4.3
     hooks:
     - id: codespell
       args: ['--skip', '*.csv,*.txt']
