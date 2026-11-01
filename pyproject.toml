@@ -3,7 +3,10 @@ name = "androiddevelopment"
 version = "0.1.0"
 description = "AndroidDevelopment"
 readme = "README.md"
-requires-python = ">=3.14"
-dependencies = [
-  "pre-commit",
+requires-python = "==3.14.*"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.7.0",
 ]
