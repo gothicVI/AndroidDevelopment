@@ -10,5 +10,11 @@
   "lockFileMaintenance": {
     "enabled": true
   },
-  "minimumReleaseAge": "3 days"
+  "minimumReleaseAge": "3 days",
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["pinDigest"],
+      "minimumReleaseAge": null
+    }
+  ]
 }
