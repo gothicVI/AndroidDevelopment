@@ -10,3 +10,6 @@ dependencies = []
 dev = [
     "pre-commit>=4.7.0",
 ]
+
+[tool.uv]
+exclude-newer = "72 hours"
